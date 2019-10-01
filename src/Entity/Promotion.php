@@ -56,6 +56,16 @@ class Promotion
      */
     private $nom;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Prestataire", inversedBy="promotion")
+     */
+    private $prestataire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CategorieDeServices", inversedBy="promotion")
+     */
+    private $categorieDeServices;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -153,6 +163,30 @@ class Promotion
     public function setNom(?string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrestataire(): ?Prestataire
+    {
+        return $this->prestataire;
+    }
+
+    public function setPrestataire(?Prestataire $prestataire): self
+    {
+        $this->prestataire = $prestataire;
+
+        return $this;
+    }
+
+    public function getCategorieDeServices(): ?CategorieDeServices
+    {
+        return $this->categorieDeServices;
+    }
+
+    public function setCategorieDeServices(?CategorieDeServices $categorieDeServices): self
+    {
+        $this->categorieDeServices = $categorieDeServices;
 
         return $this;
     }

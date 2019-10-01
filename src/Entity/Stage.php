@@ -61,6 +61,11 @@ class Stage
      */
     private $tarif;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Prestataire", inversedBy="stage")
+     */
+    private $prestataire;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -170,6 +175,18 @@ class Stage
     public function setTarif(?string $tarif): self
     {
         $this->tarif = $tarif;
+
+        return $this;
+    }
+
+    public function getPrestataire(): ?Prestataire
+    {
+        return $this->prestataire;
+    }
+
+    public function setPrestataire(?Prestataire $prestataire): self
+    {
+        $this->prestataire = $prestataire;
 
         return $this;
     }

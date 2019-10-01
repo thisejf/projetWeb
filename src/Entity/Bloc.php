@@ -31,6 +31,11 @@ class Bloc
      */
     private $nom;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Position", inversedBy="bloc")
+     */
+    private $position;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +73,18 @@ class Bloc
     public function setNom(?string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPosition(): ?Position
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?Position $position): self
+    {
+        $this->position = $position;
 
         return $this;
     }

@@ -66,6 +66,21 @@ class Utilisateur
      */
     private $typeUtilisateur;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CodePostal")
+     */
+    private $codePostal;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Localite")
+     */
+    private $localite;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Commune")
+     */
+    private $commune;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -187,6 +202,42 @@ class Utilisateur
     public function setTypeUtilisateur(?string $typeUtilisateur): self
     {
         $this->typeUtilisateur = $typeUtilisateur;
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?CodePostal
+    {
+        return $this->codePostal;
+    }
+
+    public function setCodePostal(?CodePostal $codePostal): self
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    public function getLocalite(): ?Localite
+    {
+        return $this->localite;
+    }
+
+    public function setLocalite(?Localite $localite): self
+    {
+        $this->localite = $localite;
+
+        return $this;
+    }
+
+    public function getCommune(): ?Commune
+    {
+        return $this->commune;
+    }
+
+    public function setCommune(?Commune $commune): self
+    {
+        $this->commune = $commune;
 
         return $this;
     }

@@ -31,6 +31,16 @@ class Abus
      */
     private $identifiant;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Internaute", inversedBy="abus")
+     */
+    private $internaute;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Commentaire", inversedBy="abus")
+     */
+    private $commentaire;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +78,30 @@ class Abus
     public function setIdentifiant(?int $identifiant): self
     {
         $this->identifiant = $identifiant;
+
+        return $this;
+    }
+
+    public function getInternaute(): ?Internaute
+    {
+        return $this->internaute;
+    }
+
+    public function setInternaute(?Internaute $internaute): self
+    {
+        $this->internaute = $internaute;
+
+        return $this;
+    }
+
+    public function getCommentaire(): ?Commentaire
+    {
+        return $this->commentaire;
+    }
+
+    public function setCommentaire(?Commentaire $commentaire): self
+    {
+        $this->commentaire = $commentaire;
 
         return $this;
     }
