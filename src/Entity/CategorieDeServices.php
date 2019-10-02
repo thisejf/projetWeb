@@ -29,11 +29,6 @@ class CategorieDeServices
     private $enAvant;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $identifiant;
-
-    /**
      * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $nom;
@@ -84,18 +79,6 @@ class CategorieDeServices
     public function setEnAvant(?bool $enAvant): self
     {
         $this->enAvant = $enAvant;
-
-        return $this;
-    }
-
-    public function getIdentifiant(): ?int
-    {
-        return $this->identifiant;
-    }
-
-    public function setIdentifiant(?int $identifiant): self
-    {
-        $this->identifiant = $identifiant;
 
         return $this;
     }

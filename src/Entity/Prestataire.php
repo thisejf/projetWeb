@@ -9,24 +9,19 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PrestataireRepository")
  */
-class Prestataire
+class Prestataire extends Utilisateur
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $eMailContact;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $identifiant;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
@@ -107,18 +102,6 @@ class Prestataire
     public function setEMailContact(?string $eMailContact): self
     {
         $this->eMailContact = $eMailContact;
-
-        return $this;
-    }
-
-    public function getIdentifiant(): ?int
-    {
-        return $this->identifiant;
-    }
-
-    public function setIdentifiant(?int $identifiant): self
-    {
-        $this->identifiant = $identifiant;
 
         return $this;
     }

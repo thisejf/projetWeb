@@ -22,11 +22,6 @@ class NewsLetter
     private $documentPDF;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $identifiant;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $publication;
@@ -49,18 +44,6 @@ class NewsLetter
     public function setDocumentPDF($documentPDF): self
     {
         $this->documentPDF = $documentPDF;
-
-        return $this;
-    }
-
-    public function getIdentifiant(): ?int
-    {
-        return $this->identifiant;
-    }
-
-    public function setIdentifiant(?int $identifiant): self
-    {
-        $this->identifiant = $identifiant;
 
         return $this;
     }

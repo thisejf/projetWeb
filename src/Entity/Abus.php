@@ -27,11 +27,6 @@ class Abus
     private $encodage;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $identifiant;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Internaute", inversedBy="abus")
      */
     private $internaute;
@@ -66,18 +61,6 @@ class Abus
     public function setEncodage(?\DateTimeInterface $encodage): self
     {
         $this->encodage = $encodage;
-
-        return $this;
-    }
-
-    public function getIdentifiant(): ?int
-    {
-        return $this->identifiant;
-    }
-
-    public function setIdentifiant(?int $identifiant): self
-    {
-        $this->identifiant = $identifiant;
 
         return $this;
     }

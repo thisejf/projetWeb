@@ -6,80 +6,78 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"internaute" = "Internaute", "prestataire" = "Prestataire"})
  */
-class Utilisateur
+abstract class Utilisateur
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
      */
-    private $adresseNumero;
+    protected $adresseNumero;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
      */
-    private $adresseRue;
+    protected $adresseRue;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $banni;
+    protected $banni;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
      */
-    private $eMail;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $identifiant;
+    protected $eMail;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $inscriptionConf;
+    protected $inscriptionConf;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $inscription;
+    protected $inscription;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
      */
-    private $motDePasse;
+    protected $motDePasse;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $nbEssaisInfructueux;
+    protected $nbEssaisInfructueux;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
      */
-    private $typeUtilisateur;
+    protected $typeUtilisateur;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CodePostal")
      */
-    private $codePostal;
+    protected $codePostal;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Localite")
      */
-    private $localite;
+    protected $localite;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Commune")
      */
-    private $commune;
+    protected $commune;
 
     public function getId(): ?int
     {
@@ -130,18 +128,6 @@ class Utilisateur
     public function setEMail(?string $eMail): self
     {
         $this->eMail = $eMail;
-
-        return $this;
-    }
-
-    public function getIdentifiant(): ?int
-    {
-        return $this->identifiant;
-    }
-
-    public function setIdentifiant(?int $identifiant): self
-    {
-        $this->identifiant = $identifiant;
 
         return $this;
     }

@@ -21,11 +21,6 @@ class Commune
      */
     private $commune;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $identifiant;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -43,15 +38,4 @@ class Commune
         return $this;
     }
 
-    public function getIdentifiant(): ?int
-    {
-        return $this->identifiant;
-    }
-
-    public function setIdentifiant(?int $identifiant): self
-    {
-        $this->identifiant = $identifiant;
-
-        return $this;
-    }
 }

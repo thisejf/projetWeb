@@ -42,11 +42,6 @@ class Stage
     private $fin;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $indentifiant;
-
-    /**
      * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $infoComplementaire;
@@ -127,18 +122,6 @@ class Stage
     public function setFin(?\DateTimeInterface $fin): self
     {
         $this->fin = $fin;
-
-        return $this;
-    }
-
-    public function getIndentifiant(): ?int
-    {
-        return $this->indentifiant;
-    }
-
-    public function setIndentifiant(?int $indentifiant): self
-    {
-        $this->indentifiant = $indentifiant;
 
         return $this;
     }

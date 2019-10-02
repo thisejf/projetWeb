@@ -9,19 +9,14 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\InternauteRepository")
  */
-class Internaute
+class Internaute extends Utilisateur
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $identifiant;
+    protected $id;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -73,18 +68,6 @@ class Internaute
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdentifiant(): ?int
-    {
-        return $this->identifiant;
-    }
-
-    public function setIdentifiant(?int $identifiant): self
-    {
-        $this->identifiant = $identifiant;
-
-        return $this;
     }
 
     public function getNewsLetter(): ?bool

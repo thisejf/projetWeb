@@ -21,11 +21,6 @@ class CodePostal
      */
     private $codePostal;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $identifiant;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -39,18 +34,6 @@ class CodePostal
     public function setCodePostal(?string $codePostal): self
     {
         $this->codePostal = $codePostal;
-
-        return $this;
-    }
-
-    public function getIdentifiant(): ?int
-    {
-        return $this->identifiant;
-    }
-
-    public function setIdentifiant(?int $identifiant): self
-    {
-        $this->identifiant = $identifiant;
 
         return $this;
     }

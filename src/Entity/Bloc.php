@@ -22,11 +22,6 @@ class Bloc
     private $description;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $identifiant;
-
-    /**
      * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $nom;
@@ -49,18 +44,6 @@ class Bloc
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getIdentifiant(): ?int
-    {
-        return $this->identifiant;
-    }
-
-    public function setIdentifiant(?int $identifiant): self
-    {
-        $this->identifiant = $identifiant;
 
         return $this;
     }
