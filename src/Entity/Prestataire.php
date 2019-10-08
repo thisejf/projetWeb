@@ -19,27 +19,27 @@ class Prestataire extends Utilisateur
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $eMailContact;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $numTel;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $numTVA;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $siteInternet;
 

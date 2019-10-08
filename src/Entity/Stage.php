@@ -32,7 +32,7 @@ class Stage
     private $debut;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -42,17 +42,17 @@ class Stage
     private $fin;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $infoComplementaire;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $tarif;
 

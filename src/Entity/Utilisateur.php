@@ -20,12 +20,12 @@ abstract class Utilisateur
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $adresseNumero;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $adresseRue;
 
@@ -35,7 +35,7 @@ abstract class Utilisateur
     protected $banni;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $eMail;
 
@@ -50,7 +50,7 @@ abstract class Utilisateur
     protected $inscription;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $motDePasse;
 
@@ -60,7 +60,7 @@ abstract class Utilisateur
     protected $nbEssaisInfructueux;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $typeUtilisateur;
 

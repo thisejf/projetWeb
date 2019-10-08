@@ -19,7 +19,7 @@ class CategorieDeServices
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -29,7 +29,7 @@ class CategorieDeServices
     private $enAvant;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;
 
