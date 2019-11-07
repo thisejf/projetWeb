@@ -1,0 +1,24 @@
+<header class="header {% if nav is defined %}header-transparent{% endif %}">
+    <div class="header-wrapper">
+        <div class="container">
+            <div class="header-inner">
+                <div class="header-logo">
+                    <a href="index.html">
+                        {% if nav is defined %}
+                            <img src="assets/img/logo-white.png" alt="Logo">
+                        {% else %}
+                            <img src="assets/img/logo.png" alt="Logo">
+                        {% endif %}
+                        <span>Bien-Être</span>
+                    </a>
+                </div><!-- /.header-logo -->
+                <div class="header-content">
+                    {% if nav is not defined %}
+                        {% include('partials/_header_nav_top.html.twig') %}
+                    {% endif %}
+                    {% include('partials/_header_nav_bottom.html.twig') %}
+                </div><!-- /.header-content -->
+            </div><!-- /.header-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.header-wrapper -->
+</header><!-- /.header -->

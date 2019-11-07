@@ -19,6 +19,15 @@ class PrestataireRepository extends ServiceEntityRepository
         parent::__construct($registry, Prestataire::class);
     }
 
+    public function last4Prestataire(){
+        $limit = 4;
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id','DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Prestataire[] Returns an array of Prestataire objects
     //  */

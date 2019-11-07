@@ -1,0 +1,38 @@
+{% extends 'default/layout.html.twig' %}
+{% block categorie %}
+    {{ include('default/partials/_categorie_de_service.html.twig') }}
+{% endblock %}
+
+{% block search %}
+    {{ include('default/partials/_search_form.html.twig') }}
+{% endblock %}
+
+{% block service_du_mois %}
+    <div class="page-header">
+        <h1>Services du mois</h1>
+        <p>Listes des services du mois selectionnés par notre équipe.<br>Regarde ce qu'il se passe dans ta ville maintenant!</p>
+    </div><!-- /.page-header -->
+    {{ include('default/partials/_service_du_mois.html.twig') }}
+{% endblock %}
+
+{% block dernier_prestataire %}
+    <div class="page-header">
+        <h1>Nos derniers prestataires</h1>
+        <p>Regarde nos derniers prestaires inscrits.<br>Ils proposent des offres à ne pas rater!</p>
+    </div><!-- /.page-header -->
+
+    <div class="cards-wrapper">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    {% for prestataire in prestataires %}
+                        {% include 'default/partials/_dernier_prestataire.html.twig' with {'prestataire':prestataire} %}
+                    {% endfor %}
+                </div><!-- /.row -->
+            </div><!-- /.col-* -->
+        </div><!-- /.row -->
+    </div><!-- /.cards-wrapper -->
+{% endblock %}
+{% block contact %}
+    {{ include('default/partials/_contact.html.twig') }}
+{% endblock %}
