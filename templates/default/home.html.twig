@@ -1,6 +1,6 @@
 {% extends 'default/layout.html.twig' %}
 {% block categorie %}
-    {{ include('default/partials/_categorie_de_service.html.twig') }}
+    {% include 'default/partials/_categorie_de_service.html.twig' with {'categorieDeService':categorieDeServices} %}
 {% endblock %}
 
 {% block search %}

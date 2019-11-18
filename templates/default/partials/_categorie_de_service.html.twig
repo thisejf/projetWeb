@@ -1,8 +1,22 @@
-<div class="container">
-    <h1>Catégorie de service</h1>
-
-    <p>Create your own directory website by using Superlist template <br> incorporating all features of modern directory website.</p>
-
-    <a href="listing-row.html" class="btn btn-primary btn-lg">View Listings</a>
-    <a href="listing-submit.html" class="btn btn-secondary btn-lg">Submit</a>
+<div class="container categ">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Catégorie de service</h1>
+            <p>Liste de nos catégories de service<br>Vous trouverez la liste de nos prestataires correspondant à la catégorie</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-4 list-group">
+                {% for categorieDeService in categorieDeServices %}
+                    <a href={{ path('categorie_de_service', {id: categorieDeService.id}) }} class="list-group-item">{{ categorieDeService.nom }}<span class="badge">{{ categorieDeService.prestataires|length }}</span></a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <a  href="{{ path('categorie_de_service') }}" class="btn btn-primary btn-lg">View Listings</a>
+        </div>
+    </div>
 </div><!-- /.container -->

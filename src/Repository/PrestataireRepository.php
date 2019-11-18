@@ -22,7 +22,7 @@ class PrestataireRepository extends ServiceEntityRepository
     public function last4Prestataire(){
         $limit = 4;
         return $this->createQueryBuilder('p')
-            ->orderBy('p.id','DESC')
+            ->orderBy('p.inscription','DESC')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();

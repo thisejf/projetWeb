@@ -28,7 +28,7 @@ class PrestataireFixtures extends Fixture implements DependentFixtureInterface
             $prestataire->setNumTVA($faker->vat(false));
             $prestataire->setSiteInternet("www.".$prestataire->getNom().".com");
             $prestataire->addCategorieDeService($this->getReference(CategorieDeServicesFixtures::CATEGORIE_DE_SERVICE_REFERENCE.$faker->numberBetween(0,CategorieDeServicesFixtures::NBR_CATEGORIE_DE_SERVICE-1)));
-
+            $prestataire->setInscription($faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null));
             $manager->persist($prestataire);
         }
         $manager->flush();

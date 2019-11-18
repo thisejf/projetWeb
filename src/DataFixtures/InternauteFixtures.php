@@ -24,6 +24,7 @@ class InternauteFixtures extends Fixture implements DependentFixtureInterface
             $internaute->setCodePostal($this->getReference(CodePostalFixtures::CODE_POSTAL_REFERENCE.$faker->numberBetween(0, codePostalFixtures::NBR_CODE_POSTAL-1)));
             $internaute->setCommune($this->getReference(CommuneFixtures::COMMUNE_REFERENCE.$faker->numberBetween(0, CommuneFixtures::NBR_COMMUNE-1)));
             $internaute->setEMail($internaute->getNom()."@".$faker->freeEmailDomain);
+            $internaute->setInscription($faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null));
             $manager->persist($internaute);
         }
         $manager->flush();

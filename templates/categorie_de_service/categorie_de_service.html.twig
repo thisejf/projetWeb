@@ -1,0 +1,30 @@
+{% extends 'categorie_de_service/layout.html.twig' %}
+{% block categorie_de_service %}
+    <div class="content">
+        <div class="document-title mt0">
+            <h1>Catégorie de service</h1>
+            <ul class="breadcrumb">
+                <li><a href={{ path('home_page') }}>Bien être</a></li>
+                <li><a href={{ path('categorie_de_service') }}>Catégorie de service</a></li>
+            </ul>
+        </div><!-- /.document-title -->
+        {% block search %}
+
+        {% endblock %}
+
+        {% if categorieDeServices is not defined %}
+            {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeService} %}
+            <h2 class="page-title"> {{ categorieDeService.prestataires|length }} prestataires trouvés:</h2>
+            {% if categorieDeService.prestataires|length > 0 %}
+                {% for prestataire in categorieDeService.prestataires %}
+                    {% include 'default/partials/_dernier_prestataire.html.twig' with {'prestataire':prestataire} %}
+                {% endfor %}
+            {% endif %}
+        {% else %}
+            <h2 class="page-title"> {{ categorieDeServices|length }} catégories trouvées:</h2>
+            {% for  categorieDeService in categorieDeServices %}
+                {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeService} %}
+            {% endfor %}
+        {% endif %}
+    </div><!-- /.content -->
+{% endblock %}
