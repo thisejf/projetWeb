@@ -13,7 +13,7 @@
         {% endblock %}
 
         {% if categorieDeServices is not defined %}
-            {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeService} %}
+            {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeService, 'image':image} %}
             <h2 class="page-title"> {{ categorieDeService.prestataires|length }} prestataires trouvés:</h2>
             {% if categorieDeService.prestataires|length > 0 %}
                 {% for prestataire in categorieDeService.prestataires %}
@@ -23,7 +23,7 @@
         {% else %}
             <h2 class="page-title"> {{ categorieDeServices|length }} catégories trouvées:</h2>
             {% for  categorieDeService in categorieDeServices %}
-                {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeService} %}
+                {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeService, 'image':images[loop.index-1].image } %}
             {% endfor %}
         {% endif %}
     </div><!-- /.content -->

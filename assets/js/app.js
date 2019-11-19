@@ -9,6 +9,7 @@
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $  = require('jquery');
+global.$ = global.jquery = $;
 import 'bootstrap-sass';
 import '../scss/superlist.scss';
 import '../css/app.css';

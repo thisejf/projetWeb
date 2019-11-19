@@ -19,6 +19,14 @@ class ImagesRepository extends ServiceEntityRepository
         parent::__construct($registry, Images::class);
     }
 
+    public function findCategorieImages(){
+            return$this->createQueryBuilder('i')
+                ->andWhere('i.categorieDeServices IS NOT NULL')
+                ->getQuery()
+                ->getResult()
+                ;
+    }
+
     // /**
     //  * @return Images[] Returns an array of Images objects
     //  */

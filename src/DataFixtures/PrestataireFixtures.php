@@ -11,6 +11,8 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class PrestataireFixtures extends Fixture implements DependentFixtureInterface
 {
+    public const PRESTATAIRE_REFERENCE = 'prestataire';
+
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_BE');
@@ -29,7 +31,11 @@ class PrestataireFixtures extends Fixture implements DependentFixtureInterface
             $prestataire->setSiteInternet("www.".$prestataire->getNom().".com");
             $prestataire->addCategorieDeService($this->getReference(CategorieDeServicesFixtures::CATEGORIE_DE_SERVICE_REFERENCE.$faker->numberBetween(0,CategorieDeServicesFixtures::NBR_CATEGORIE_DE_SERVICE-1)));
             $prestataire->setInscription($faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null));
+
             $manager->persist($prestataire);
+
+            //Sharing Objects between Fixtures
+            $this->addReference(self::PRESTATAIRE_REFERENCE.$i, $prestataire);
         }
         $manager->flush();
     }
