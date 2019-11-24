@@ -19,6 +19,28 @@ class CategorieDeServicesRepository extends ServiceEntityRepository
         parent::__construct($registry, CategorieDeServices::class);
     }
 
+    public function categorieJoinImage(){
+        return $this->createQueryBuilder('c')
+            ->select('c','i.image')
+            ->join('App\Entity\Images', 'i', 'WITH', 'i.categorieDeServices = c.id')
+            ->orderBy('c.nom', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findOnecategorieJoinImage($id){
+        return $this->createQueryBuilder('c')
+            ->select('c','i.image')
+            ->where('c.id = :id')
+            ->setParameter('id', $id)
+            ->join('App\Entity\Images', 'i', 'WITH', 'i.categorieDeServices = c.id')
+            ->orderBy('c.nom', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return CategorieDeServices[] Returns an array of CategorieDeServices objects
     //  */

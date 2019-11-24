@@ -12,19 +12,19 @@
 
         {% endblock %}
 
-        {% if categorieDeServices is not defined %}
-            {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeService, 'image':image} %}
-            <h2 class="page-title"> {{ categorieDeService.prestataires|length }} prestataires trouvés:</h2>
-            {% if categorieDeService.prestataires|length > 0 %}
-                {% for prestataire in categorieDeService.prestataires %}
-                    {% include 'default/partials/_dernier_prestataire.html.twig' with {'prestataire':prestataire} %}
-                {% endfor %}
-            {% endif %}
+        {% if categorieDeServices|length <= 1 %}
+            <h2>Catégorie:</h2>
+            {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeServices } %}
+            <h3 class="page-title"> {{ categorieDeServices[0][0].prestataires|length }} prestataires trouvés:</h3>
+            {% for prestataire in categorieDeServices[0][0].prestataires %}
+                {% include 'default/partials/_dernier_prestataire.html.twig' with {'prestataire':prestataire} %}
+            {% endfor %}
         {% else %}
             <h2 class="page-title"> {{ categorieDeServices|length }} catégories trouvées:</h2>
-            {% for  categorieDeService in categorieDeServices %}
-                {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeService, 'image':images[loop.index-1].image } %}
-            {% endfor %}
+            {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeServices } %}
         {% endif %}
     </div><!-- /.content -->
 {% endblock %}
+
+
+

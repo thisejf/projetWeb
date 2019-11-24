@@ -1,12 +1,14 @@
-<div class="card-row">
-    <div class="card-row-inner">
-        <div class="card-row-image" style="background-image: url({{ image }})">
-            <div class="card-row-label"><a href="listing-detail.html">{{ categorieDeService.nom }}</a></div><!-- /.card-row-label -->
-            <div class="card-row-price">{{ categorieDeService.prestataires|length }} {{ categorieDeService.prestataires|length > 1 ? 'prestataires' : 'prestataire'}}</div><!-- -->
-        </div><!-- /.card-row-image -->
-        <div class="card-row-body">
-            <h2 class="card-row-title"><a href={{ path('categorie_de_service', {id: categorieDeService.id}) }}>{{ categorieDeService.nom }}</a></h2>
-            <div class="card-row-content"><p>{{ categorieDeService.description }}</p></div><!-- /.card-row-content -->
-        </div><!-- /.card-row-body -->
-    </div><!-- /.card-row-inner -->
-</div><!-- /.card-row -->
+{% for  categorieDeService in categorieDeServices %}
+    <div class="card-row">
+        <div class="card-row-inner">
+            <div class="card-row-image" style="background-image: url({{ categorieDeService.image }})">
+                <div class="card-row-label"><a href="listing-detail.html">{{ categorieDeService[0].nom }}</a></div><!-- /.card-row-label -->
+                <div class="card-row-price">{{ categorieDeService[0].prestataires|length }} {{ categorieDeService[0].prestataires|length > 1 ? 'prestataires' : 'prestataire'}}</div><!-- -->
+            </div><!-- /.card-row-image -->
+            <div class="card-row-body">
+                <h2 class="card-row-title"><a href={{ path('categorie_de_service', {id: categorieDeService[0].id}) }}>{{ categorieDeService[0].nom }}</a></h2>
+                <div class="card-row-content"><p>{{ categorieDeService[0].description }}</p></div><!-- /.card-row-content -->
+            </div><!-- /.card-row-body -->
+        </div><!-- /.card-row-inner -->
+    </div><!-- /.card-row -->
+{% endfor %}
