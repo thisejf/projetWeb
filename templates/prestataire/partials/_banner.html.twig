@@ -1,0 +1,40 @@
+<div class="mb80">
+    <div class="detail-banner" style="background-image: url({{ prestataire[0].image.snapshot.0.image }})">
+        <div class="container">
+            <div class="detail-banner-left">
+                <div class="detail-banner-info">
+                    <div class="detail-label"><a href={{ path('categorie_de_service', {id: prestataire[0].categorieDeServices.snapshot[0].id}) }}>{{ prestataire[0].categorieDeServices.snapshot[0].nom }}</a></div>
+
+                    <div class="detail-verified">Verified</div>
+                </div><!-- /.detail-banner-info -->
+
+                <h2 class="detail-title">
+                    {{ prestataire[0].nom }}
+                </h2>
+
+                <div class="detail-banner-address">
+                    <i class="fa fa-map-o"></i> {{ prestataire[0].adresseRue }} {{ prestataire[0].adresseNumero }}<br>
+                    {{ prestataire.codePostal }} {{ prestataire.commune }}
+                </div><!-- /.detail-banner-address -->
+
+                <div class="detail-banner-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div><!-- /.detail-banner-rating -->
+
+                <div class="detail-banner-btn bookmark">
+                    <i class="fa fa-bookmark-o"></i> <span data-toggle="Bookmarked">Bookmark</span>
+                </div><!-- /.detail-claim -->
+
+                <div class="detail-banner-btn heart">
+                    <i class="fa fa-heart-o"></i> <span data-toggle="I Love It">Give Heart</span>
+                </div><!-- /.detail-claim -->
+
+            </div><!-- /.detail-banner-left -->
+        </div><!-- /.container -->
+    </div><!-- /.detail-banner -->
+
+</div>

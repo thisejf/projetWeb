@@ -17,7 +17,8 @@
             {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeServices } %}
             <h3 class="page-title"> {{ categorieDeServices[0][0].prestataires|length }} prestataires trouvés:</h3>
             {% for prestataire in categorieDeServices[0][0].prestataires %}
-                {% include 'default/partials/_dernier_prestataire.html.twig' with {'prestataire':prestataire} %}
+                {% set data = [prestataire] %}
+                {% include 'default/partials/_dernier_prestataire.html.twig' with {'prestataire':data} %}
             {% endfor %}
         {% else %}
             <h2 class="page-title"> {{ categorieDeServices|length }} catégories trouvées:</h2>

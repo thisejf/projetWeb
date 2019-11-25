@@ -11,6 +11,7 @@ class ImageFixtures extends Fixture implements DependentFixtureInterface
 {
     public const NBR_IMAGE_CATEGORIE_DE_SERVICES = 5;
     public const NBR_IMAGE_PRESTATAIRE = 10;
+    public const NBR_PRESTATAIRE_PHOTO = 5;
 
     public function load(ObjectManager $manager)
     {
@@ -27,6 +28,16 @@ class ImageFixtures extends Fixture implements DependentFixtureInterface
             $images->setImage('https://loremflickr.com/320/240/dog?random='.$i);
             $images->setPrestataire($this->getReference(PrestataireFixtures::PRESTATAIRE_REFERENCE.$i));
             $manager->persist($images);
+        }
+        $manager->flush();
+
+        for ($i = 0; $i < self::NBR_IMAGE_PRESTATAIRE; $i++){
+            for($j = 0; $j <self::NBR_PRESTATAIRE_PHOTO; $j++){
+                $images = new Images();
+                $images->setImage('http://placeimg.com/640/480/people/'.$i.$j);
+                $images->setPrestatairePhotos($this->getReference(PrestataireFixtures::PRESTATAIRE_REFERENCE.$i));
+                $manager->persist($images);
+            }
         }
         $manager->flush();
     }

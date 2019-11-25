@@ -1,14 +1,14 @@
 <div class="col-sm-6">
-    <div class="card" style="background-image: url({{ prestataire.image.snapshot.0.image }})">
+    <div class="card" style="background-image: url({{ prestataire[0].image.snapshot.0.image }})">
         <div class="card-label">
-            <a href="listing-detail.html">{{ prestataire.siteInternet }}</a>
+            <a href="#">{{ prestataire[0].siteInternet }}</a>
         </div><!-- /.card-label -->
 
         <div class="card-content">
-            <h2><a href="listing-detail.html">{{ prestataire.nom }}</a></h2>
+            <h2><a href={{ path('prestataire', {id: prestataire[0].id}) }}>{{ prestataire[0].nom }}</a></h2>
 
             <div class="card-meta">
-                <i class="fa fa-map-o"></i> {{ prestataire.adresseRue }} {{ prestataire.adresseNumero }}
+                <i class="fa fa-map-o"></i> {{ prestataire[0].adresseRue }} {{ prestataire[0].adresseNumero }} <br>
             </div><!-- /.card-meta -->
 
             <div class="card-rating">
@@ -21,7 +21,7 @@
 
             <div class="card-actions">
                 <a href="#" class="fa fa-bookmark-o"></a>
-                <a href="listing-detail.html" class="fa fa-search"></a>
+                <a href={{ path('prestataire', {id: prestataire[0].id}) }} class="fa fa-search"></a>
                 <a href="#" class="fa fa-heart-o"></a>
             </div>
         </div><!-- /.card-content -->

@@ -1,0 +1,42 @@
+<h2>A propos de <span class="text-secondary">{{ prestataire[0].nom }}</span></h2>
+<div class="background-white p20">
+    <div class="detail-vcard">
+        <div class="detail-logo">
+            <img src={{ prestataire[0].image.snapshot.0.image }}>
+        </div><!-- /.detail-logo -->
+
+        <div class="detail-contact">
+            <div class="detail-contact-email">
+                <i class="fa fa-envelope-o"></i> <a href="mailto:#">{{ prestataire[0].eMailContact }}</a>
+            </div>
+            <div class="detail-contact-phone">
+                <i class="fa fa-mobile-phone"></i> <a href="tel:#">{{ prestataire[0].numTel }}</a>
+            </div>
+            <div class="detail-contact-website">
+                <i class="fa fa-globe"></i> <a href="#">{{ prestataire[0].siteInternet }}</a>
+            </div>
+            <div class="detail-contact-address">
+                <i class="fa fa-map-o"></i>
+                {{ prestataire[0].adresseNumero }} {{ prestataire[0].adresseRue }}<br>
+                {{ prestataire.codePostal }} {{ prestataire.commune }}
+            </div>
+        </div><!-- /.detail-contact -->
+    </div><!-- /.detail-vcard -->
+
+    <div class="detail-description">
+        <p>Vestibulum a lectus ullamcorper, dapibus ante id, sagittis libero. In tincidunt nisi venenatis, ornare eros at, hendrerit sem. Nunc metus purus, porta a dignissim vel, vulputate sed odio. Aenean est nisi, pulvinar eget velit quis, placerat hendrerit arcu. Vestibulum non dictum nibh.</p>
+        <p>In congue mattis felis, non hendrerit orci dictum id. Etiam consequat nulla vitae tempus interdum.Nam gravida convallis lacus, at dignissim urna pulvinar sed.</p>
+        <p>Cras ac mi odio. Aliquam erat volutpat. Cras euismod facilisis ligula in tristique. Proin et eleifend lacus, vitae dictum orci</p>
+    </div>
+
+    <div class="detail-follow">
+        <h5>Follow Us:</h5>
+        <div class="follow-wrapper">
+            <a class="follow-btn facebook" href="#"><i class="fa fa-facebook"></i></a>
+            <a class="follow-btn youtube" href="#"><i class="fa fa-youtube"></i></a>
+            <a class="follow-btn twitter" href="#"><i class="fa fa-twitter"></i></a>
+            <a class="follow-btn tripadvisor" href="#"><i class="fa fa-tripadvisor"></i></a>
+            <a class="follow-btn google-plus" href="#"><i class="fa fa-google-plus"></i></a>
+        </div><!-- /.follow-wrapper -->
+    </div><!-- /.detail-follow -->
+</div>

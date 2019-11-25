@@ -1,0 +1,17 @@
+<div class="detail-gallery">
+    <div class="detail-gallery-preview">
+        <a href={{ images[0].image }}>
+            <img src={{ images[0].image }}>
+        </a>
+    </div>
+
+    <ul class="detail-gallery-index">
+        {% for image in images %}
+            <li class="detail-gallery-list-item active">
+                <a data-target={{ image.image }}>
+                    <img src={{ image.image }} alt="image {{ image.id }}">
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div><!-- /.detail-gallery -->

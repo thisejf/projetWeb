@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prestataires{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <div class="main-inner">
+                {% block prestataire %}{% endblock %}
+        </div><!-- /.main-inner -->
+    </div><!-- /.main -->
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('map') }}
+    {{ encore_entry_script_tags('superlist') }}
+    {{ encore_entry_script_tags('carousel') }}
+{% endblock %}

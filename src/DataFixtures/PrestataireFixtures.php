@@ -25,10 +25,11 @@ class PrestataireFixtures extends Fixture implements DependentFixtureInterface
             $prestataire->setLocalite($this->getReference(LocaliteFixtures::LOCALITE_REFERENCE.$faker->numberBetween(0, localiteFixtures::NBR_LOCALITE-1)));
             $prestataire->setCodePostal($this->getReference(CodePostalFixtures::CODE_POSTAL_REFERENCE.$faker->numberBetween(0, codePostalFixtures::NBR_CODE_POSTAL-1)));
             $prestataire->setCommune($this->getReference(CommuneFixtures::COMMUNE_REFERENCE.$faker->numberBetween(0, CommuneFixtures::NBR_COMMUNE-1)));
-            $prestataire->setEMail($faker->firstname."@".$prestataire->getNom().".com");
-            $prestataire->setEMailContact("info@".$prestataire->getNom().".com");
+            $prestataire->setEMail(strtolower($faker->firstname."@".str_replace(' ','',$prestataire->getNom()).".com"));
+            $prestataire->setEMailContact("info@".str_replace(' ','',$prestataire->getNom()).".com");
+            $prestataire->setNumTel($faker->phoneNumber);
             $prestataire->setNumTVA($faker->vat(false));
-            $prestataire->setSiteInternet("www.".$prestataire->getNom().".com");
+            $prestataire->setSiteInternet(strtolower("www.".str_replace(' ','',$prestataire->getNom()).".com"));
             $prestataire->addCategorieDeService($this->getReference(CategorieDeServicesFixtures::CATEGORIE_DE_SERVICE_REFERENCE.$faker->numberBetween(0,CategorieDeServicesFixtures::NBR_CATEGORIE_DE_SERVICE-1)));
             $prestataire->setInscription($faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null));
 

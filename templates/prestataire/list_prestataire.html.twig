@@ -1,0 +1,22 @@
+{% extends 'prestataire/layout.html.twig' %}
+{% block prestataire %}
+    <div class="content">
+        <div class="document-title mt0">
+            <h1>Prestataires</h1>
+            <ul class="breadcrumb">
+                <li><a href={{ path('home_page') }}>Bien être</a></li>
+                <li><a href={{ path('prestataire') }}>Prestaires</a></li>
+            </ul>
+        </div><!-- /.document-title -->
+        <div class="container">
+            {% block search %}
+                {{ include('categorie_de_service/partials/_search_categorie.html.twig') }}
+            {% endblock %}
+            <h2>Prestaires:</h2>
+            <h3 class="page-title">{{ prestataires|length }}  prestataires trouvés:</h3>
+            {% for prestataire in prestataires %}
+                {% include 'default/partials/_dernier_prestataire.html.twig' with {'prestataire':prestataire} %}
+            {% endfor %}
+        </div>
+    </div><!-- /.content -->
+{% endblock %}

@@ -35,7 +35,6 @@ class CategorieDeServicesRepository extends ServiceEntityRepository
             ->where('c.id = :id')
             ->setParameter('id', $id)
             ->join('App\Entity\Images', 'i', 'WITH', 'i.categorieDeServices = c.id')
-            ->orderBy('c.nom', 'ASC')
             ->getQuery()
             ->getResult()
             ;
