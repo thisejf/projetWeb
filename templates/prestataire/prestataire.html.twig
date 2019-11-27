@@ -13,7 +13,7 @@
                 <div class="col-sm-5">
                     {{ include('prestataire/partials/_ratio.html.twig') }}
                     {% include 'prestataire/partials/_about.html.twig' with {'prestataire':prestataire} %}
-                    {{ include('prestataire/partials/_stage.html.twig') }}
+                    {% include 'prestataire/partials/_stage.html.twig' with {'stages':prestataire[0].stage.snapshot} %}
                 </div><!-- /.col-sm-5 -->
             </div><!-- /.row -->
         </div><!-- /.container -->

@@ -47,7 +47,7 @@ class PrestataireRepository extends ServiceEntityRepository
             ->select('p','l.localite','c.commune','cp.codePostal')
             ->where('p.id = :id')
             ->setParameter('id', $id)
-            ->join('App\Entity\Localite','l','WITH','p.localite = l.id')
+            ->join('App\Entity\Localite','l')
             ->join('App\Entity\Commune','c','WITH','p.commune = c.id')
             ->join('App\Entity\CodePostal','cp','WITH','p.codePostal = cp.id')
             ->getQuery()

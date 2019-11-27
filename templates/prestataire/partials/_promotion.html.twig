@@ -1,7 +1,12 @@
 <h2>Promotions:</h2>
 {% for promotion in promotions %}
-    <div class="posts">
-        <div class="post">
+    <div class="posts mt30">
+        <div class="post post-boxed">
+            <div class="post-image">
+                <img src="https://via.placeholder.com/150" alt="image {{ promotion.nom }}">
+                <a class="read-more" href="blog-detail-right-sidebar.html">View</a>
+            </div><!-- /.post-image -->
+
             <div class="post-content">
                 <h2><a href="blog-detail.html">{{ promotion.nom }}<a></h2>
                 <p>{{ promotion.description }}</p>
