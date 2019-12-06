@@ -18,9 +18,9 @@ class PrestataireController extends AbstractController
                 'prestataires' => $prestataire->findAllData(),
             ]);
         }
-        $data = $prestataire->findOneDataBy($id);
+
         return $this->render('prestataire/prestataire.html.twig', [
-            'prestataire' => $data[0],
+            'prestataire' => $prestataire->findOneDataBy($id)
         ]);
     }
 }

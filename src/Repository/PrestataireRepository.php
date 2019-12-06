@@ -22,10 +22,15 @@ class PrestataireRepository extends ServiceEntityRepository
     public function last4Prestataire(){
         $limit = 4;
         return $this->createQueryBuilder('p')
-            ->select('p','l.localite','c.commune','cp.codePostal')
-            ->join('App\Entity\Localite','l','WITH','p.localite = l.id')
-            ->join('App\Entity\Commune','c','WITH','p.commune = c.id')
-            ->join('App\Entity\CodePostal','cp','WITH','p.codePostal = cp.id')
+            ->select('p')
+            ->leftJoin('p.localite','l')
+            ->addSelect('l')
+            ->leftJoin('p.commune','c')
+            ->addSelect('c')
+            ->leftJoin('p.codePostal','cp')
+            ->addSelect('cp')
+            ->leftJoin('p.image','i')
+            ->addSelect('i')
             ->orderBy('p.inscription','DESC')
             ->setMaxResults($limit)
             ->getQuery()
@@ -34,22 +39,33 @@ class PrestataireRepository extends ServiceEntityRepository
 
     public function findAllData(){
         return $this->createQueryBuilder('p')
-            ->select('p','l.localite','c.commune','cp.codePostal')
-            ->join('App\Entity\Localite','l','WITH','p.localite = l.id')
-            ->join('App\Entity\Commune','c','WITH','p.commune = c.id')
-            ->join('App\Entity\CodePostal','cp','WITH','p.codePostal = cp.id')
+            ->select('p')
+            ->leftJoin('p.localite','l')
+            ->addSelect('l')
+            ->leftJoin('p.commune','c')
+            ->addSelect('c')
+            ->leftJoin('p.codePostal','cp')
+            ->addSelect('cp')
+            ->leftJoin('p.image','i')
+            ->addSelect('i')
+            ->orderBy('p.nom','ASC')
             ->getQuery()
             ->getResult();
     }
 
     public function findOneDataBy($id){
         return $this->createQueryBuilder('p')
-            ->select('p','l.localite','c.commune','cp.codePostal')
+            ->select('p')
             ->where('p.id = :id')
             ->setParameter('id', $id)
-            ->join('App\Entity\Localite','l')
-            ->join('App\Entity\Commune','c','WITH','p.commune = c.id')
-            ->join('App\Entity\CodePostal','cp','WITH','p.codePostal = cp.id')
+            ->leftJoin('p.localite','l')
+            ->addSelect('l')
+            ->leftJoin('p.commune','c')
+            ->addSelect('c')
+            ->leftJoin('p.codePostal','cp')
+            ->addSelect('cp')
+            ->leftJoin('p.image','i')
+            ->addSelect('i')
             ->getQuery()
             ->getResult();
     }

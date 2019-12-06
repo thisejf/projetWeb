@@ -48,6 +48,11 @@ class CategorieDeServices
      */
     private $promotion;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Images", cascade={"persist", "remove"})
+     */
+    private $image;
+
     public function __construct()
     {
         $this->prestataires = new ArrayCollection();
@@ -162,6 +167,18 @@ class CategorieDeServices
                 $promotion->setCategorieDeServices(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?Images
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Images $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

@@ -19,22 +19,23 @@ class CategorieDeServicesRepository extends ServiceEntityRepository
         parent::__construct($registry, CategorieDeServices::class);
     }
 
-    public function categorieJoinImage(){
+    public function findAllCategorieDeServices(){
         return $this->createQueryBuilder('c')
-            ->select('c','i.image')
-            ->join('App\Entity\Images', 'i', 'WITH', 'i.categorieDeServices = c.id')
-            ->orderBy('c.nom', 'ASC')
+            ->select('c')
+            ->leftJoin('c.image', 'ci')
+            ->addSelect('ci')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
-    public function findOnecategorieJoinImage($id){
+    public function findOneCategorieDeService($id){
         return $this->createQueryBuilder('c')
-            ->select('c','i.image')
+            ->select('c')
             ->where('c.id = :id')
             ->setParameter('id', $id)
-            ->join('App\Entity\Images', 'i', 'WITH', 'i.categorieDeServices = c.id')
+            ->leftJoin('c.image', 'ci')
+            ->addSelect('ci')
             ->getQuery()
             ->getResult()
             ;

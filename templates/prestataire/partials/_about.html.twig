@@ -1,24 +1,24 @@
-<h2>A propos de <span class="text-secondary">{{ prestataire[0].nom }}</span></h2>
+<h2>A propos de <span class="text-secondary">{{ prestataire.nom }}</span></h2>
 <div class="background-white p20">
     <div class="detail-vcard">
         <div class="detail-logo">
-            <img src={{ prestataire[0].image.first.image}}>
+            <img src={{ prestataire.image.first.image}}>
         </div><!-- /.detail-logo -->
 
         <div class="detail-contact">
             <div class="detail-contact-email">
-                <i class="fa fa-envelope-o"></i> <a href="mailto:#">{{ prestataire[0].eMailContact }}</a>
+                <i class="fa fa-envelope-o"></i> <a href="mailto:#">{{ prestataire.eMailContact }}</a>
             </div>
             <div class="detail-contact-phone">
-                <i class="fa fa-mobile-phone"></i> <a href="tel:#">{{ prestataire[0].numTel }}</a>
+                <i class="fa fa-mobile-phone"></i> <a href="tel:#">{{ prestataire.numTel }}</a>
             </div>
             <div class="detail-contact-website">
-                <i class="fa fa-globe"></i> <a href="#">{{ prestataire[0].siteInternet }}</a>
+                <i class="fa fa-globe"></i> <a href="#">{{ prestataire.siteInternet }}</a>
             </div>
             <div class="detail-contact-address">
                 <i class="fa fa-map-o"></i>
-                {{ prestataire[0].adresseNumero }} {{ prestataire[0].adresseRue }}<br>
-                {{ prestataire.codePostal }} {{ prestataire.commune }}
+                {{ prestataire.adresseNumero }} {{ prestataire.adresseRue }}<br>
+                {{ prestataire.codePostal.codePostal }} {{ prestataire.commune.commune }}
             </div>
         </div><!-- /.detail-contact -->
     </div><!-- /.detail-vcard -->

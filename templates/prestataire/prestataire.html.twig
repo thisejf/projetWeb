@@ -1,18 +1,18 @@
 {% extends 'prestataire/layout.html.twig' %}
 {% block prestataire %}
     <div class="content">
-        {% include 'prestataire/partials/_banner.html.twig' with {'prestataire':prestataire}%}
+        {% include 'prestataire/partials/_banner.html.twig' with {'prestataire':prestataire[0]}%}
         <div class="container">
             <div class="row detail-content">
                 <div class="col-sm-7">
                     {% include 'prestataire/partials/_gallery.html.twig' with {'images':prestataire[0].images.snapshot} %}
-                    {% include 'prestataire/partials/_map.html.twig' with {'prestataire':prestataire} %}
+                    {% include 'prestataire/partials/_map.html.twig' with {'prestataire':prestataire[0]} %}
                     {% include 'prestataire/partials/_promotion.html.twig' with {'promotions':prestataire[0].promotion.snapshot} %}
                 </div><!-- /.col-sm-7 -->
 
                 <div class="col-sm-5">
                     {{ include('prestataire/partials/_ratio.html.twig') }}
-                    {% include 'prestataire/partials/_about.html.twig' with {'prestataire':prestataire} %}
+                    {% include 'prestataire/partials/_about.html.twig' with {'prestataire':prestataire[0]} %}
                     {% include 'prestataire/partials/_stage.html.twig' with {'stages':prestataire[0].stage.snapshot} %}
                 </div><!-- /.col-sm-5 -->
             </div><!-- /.row -->

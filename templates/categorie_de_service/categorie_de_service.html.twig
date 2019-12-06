@@ -14,15 +14,16 @@
 
         {% if categorieDeServices|length <= 1 %}
             <h2>Catégorie:</h2>
-            {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeServices } %}
-            <h3 class="page-title"> {{ categorieDeServices[0][0].prestataires|length }} prestataires trouvés:</h3>
-            {% for prestataire in categorieDeServices[0][0].prestataires %}
-                {% set data = [prestataire] %}
-                {% include 'default/partials/_dernier_prestataire.html.twig' with {'prestataire':data} %}
+            {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeServices[0] } %}
+            <h3 class="page-title"> {{ categorieDeServices[0].prestataires|length }} prestataires trouvés:</h3>
+            {% for prestataire in categorieDeServices[0].prestataires %}
+                {% include 'default/partials/_dernier_prestataire.html.twig' with {'prestataire':prestataire} %}
             {% endfor %}
         {% else %}
             <h2 class="page-title"> {{ categorieDeServices|length }} catégories trouvées:</h2>
-            {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeServices } %}
+            {% for categorieDeService in categorieDeServices %}
+                {% include 'categorie_de_service/partials/_card.html.twig' with  {'categorieDeService':categorieDeService } %}
+            {% endfor %}
         {% endif %}
     </div><!-- /.content -->
 {% endblock %}

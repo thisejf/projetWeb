@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="projetWeb@0.0.0.0" uuid="bc63911c-d772-4396-b0db-f4e2892707cc">
+    <data-source source="LOCAL" name="projetWeb@localhost" uuid="29a3ee9a-fd1e-4b9e-8cc2-4e82f381a404">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://0.0.0.0:3306/projetWeb</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:8889/projetWeb</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

@@ -15,11 +15,11 @@ class CategorieDeServiceController extends AbstractController
     {
         if(!$id){
             return $this->render('categorie_de_service/categorie_de_service.html.twig', [
-                'categorieDeServices'=>$categorieDeService->categorieJoinImage()
+                'categorieDeServices'=>$categorieDeService->findAllCategorieDeServices()
             ]);
         }
         return $this->render('categorie_de_service/categorie_de_service.html.twig', [
-            'categorieDeServices'=>$categorieDeService->findOnecategorieJoinImage($id)
+            'categorieDeServices'=>$categorieDeService->findOneCategorieDeService($id)
         ]);
     }
 }

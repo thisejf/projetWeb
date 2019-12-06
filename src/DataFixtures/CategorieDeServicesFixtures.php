@@ -1,8 +1,8 @@
 <?php
 
 namespace App\DataFixtures;
-
 use App\Entity\CategorieDeServices;
+use App\Entity\Images;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
@@ -11,6 +11,7 @@ class CategorieDeServicesFixtures extends Fixture
 {
     //Sharing Objects between Fixtures
     public const CATEGORIE_DE_SERVICE_REFERENCE = 'categorieDeService';
+    public const IMAGE_REFERENCE = 'image';
 
     public const NBR_CATEGORIE_DE_SERVICE = 5;
 
@@ -22,6 +23,13 @@ class CategorieDeServicesFixtures extends Fixture
             $categorieDeServices = new CategorieDeServices();
             $categorieDeServices->setDescription($faker->text);
             $categorieDeServices->setNom($faker->jobTitle);
+
+            $image = new Images();
+            $image->setImage('https://loremflickr.com/320/240?random='.$i);
+            $manager->persist($image);
+            $this->addReference(self::IMAGE_REFERENCE.$i, $image);
+
+            $categorieDeServices->setImage($this->getReference(CategorieDeServicesFixtures::IMAGE_REFERENCE.$i));
             $manager->persist($categorieDeServices);
 
             //Sharing Objects between Fixtures
@@ -30,3 +38,5 @@ class CategorieDeServicesFixtures extends Fixture
         $manager->flush();
     }
 }
+
+

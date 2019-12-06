@@ -36,11 +36,6 @@ class Images
      */
     private $prestatairePhotos;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\CategorieDeServices", cascade={"persist", "remove"})
-     */
-    private $categorieDeServices;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -90,18 +85,6 @@ class Images
     public function setPrestatairePhotos(?Prestataire $prestatairePhotos): self
     {
         $this->prestatairePhotos = $prestatairePhotos;
-
-        return $this;
-    }
-
-    public function getCategorieDeServices(): ?CategorieDeServices
-    {
-        return $this->categorieDeServices;
-    }
-
-    public function setCategorieDeServices(?CategorieDeServices $categorieDeServices): self
-    {
-        $this->categorieDeServices = $categorieDeServices;
 
         return $this;
     }
