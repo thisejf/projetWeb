@@ -10,7 +10,7 @@
         </div><!-- /.document-title -->
         <div class="container">
             {% block search %}
-                {{ include('categorie_de_service/partials/_search_categorie.html.twig') }}
+                {%  include 'prestataire/partials/_search_prestataire.twig' with {'categorieDeServices':categorieDeServices, 'request':request} %}
             {% endblock %}
             <h2>Prestaires:</h2>
             <h3 class="page-title">{{ prestataires|length }}  prestataires trouvés:</h3>

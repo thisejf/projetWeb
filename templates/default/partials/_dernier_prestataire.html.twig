@@ -5,7 +5,7 @@
         </div><!-- /.card-label -->
 
         <div class="card-content">
-            <h2><a href={{ path('prestataire', {id: prestataire.id}) }}>{{ prestataire.nom }}</a></h2>
+            <h2><a href={{ path('prestataire_id', {id: prestataire.id}) }}>{{ prestataire.nom }}</a></h2>
 
             <div class="card-meta">
                 <i class="fa fa-map-o"></i> {{ prestataire.adresseRue }} {{ prestataire.adresseNumero }} <br>
@@ -22,7 +22,7 @@
 
             <div class="card-actions">
                 <a href="#" class="fa fa-bookmark-o"></a>
-                <a href={{ path('prestataire', {id: prestataire.id}) }} class="fa fa-search"></a>
+                <a href={{ path('prestataire_id', {id: prestataire.id}) }} class="fa fa-search"></a>
                 <a href="#" class="fa fa-heart-o"></a>
             </div>
         </div><!-- /.card-content -->

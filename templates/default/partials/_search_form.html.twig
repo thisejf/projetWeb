@@ -1,31 +1,21 @@
-<form method="get" action="?">
-    <h2>Start Searching</h2>
+<form method="get" action="{{ path('prestataire_search') }}">
+    <h2>Chercher un prestataire</h2>
 
     <div class="hero-image-keyword form-group">
-        <input type="text" class="form-control" placeholder="Keyword">
+        <input type="text" class="form-control" name="prestataire" placeholder="Nom du prestataire">
     </div><!-- /.form-group -->
 
     <div class="hero-image-location form-group">
-        <select class="form-control" title="Location">
-            <option>Bronx</option>
-            <option>Brooklyn</option>
-            <option>Manhattan</option>
-            <option>Staten Island</option>
-            <option>Queens</option>
-        </select>
+        <input type="text" class="form-control" name="localite" placeholder="Localité">
     </div><!-- /.form-group -->
 
-    <div class="hero-image-category form-group">
-        <select class="form-control" title="Category">
-            <option value="">Automotive</option>
-            <option value="">Jobs</option>
-            <option value="">Nightlife</option>
-            <option value="">Services</option>
+    <div class="form-group">
+        <select class="form-control" title="Categorie" name="categorie">
+            <option value="">--- Toutes les categories ---</option>
+            {% for categorieDeService in categorieDeServices %}
+                <option value="{{ categorieDeService.nom }}">{{ categorieDeService.nom }}</option>
+            {% endfor %}
         </select>
-    </div><!-- /.form-group -->
-
-    <div class="hero-image-price form-group">
-        <input type="text" class="form-control" placeholder="Min. Price">
     </div><!-- /.form-group -->
 
     <button type="submit" class="btn btn-primary btn-block">Search</button>

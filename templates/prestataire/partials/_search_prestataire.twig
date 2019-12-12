@@ -1,0 +1,46 @@
+{% block search %}
+    <form class="filter" method="get" action="{{ path('prestataire_search') }}">
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="hero-image-keyword form-group">
+                    <input type="text" class="form-control" name="prestataire" placeholder="Nom du prestataire" value={{ request != null ?  request.prestataire : "" }}>
+                </div><!-- /.form-group -->
+            </div><!-- /.col-* -->
+
+            <div class="col-sm-12 col-md-4">
+                <div class="hero-image-location form-group">
+                    <input type="text" class="form-control" name="localite" placeholder="Localité" value={{ request != null ?  request.localite : "" }}>
+                </div><!-- /.form-group -->
+            </div><!-- /.col-* -->
+
+            <div class="col-sm-12 col-md-4">
+                <div class="form-group">
+                    <select class="form-control" title="Categorie" name="categorie">
+                        <option value="">--- Toutes les categories ---</option>
+                        {% for categorieDeService in categorieDeServices %}
+                            <option value="{{ categorieDeService.nom }}" {{ request != null and categorieDeService.nom == request.categorie ? "selected" : "" }}>{{ categorieDeService.nom }}</option>
+                        {% endfor %}
+                    </select>
+                </div><!-- /.form-group -->
+            </div><!-- /.col-* -->
+        </div><!-- /.row -->
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="filter-actions">
+                    {% for data in request %}
+                        {% if data %}
+                            <a href="#"><i class="fa fa-close"></i>{{ data }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div><!-- /.filter-actions -->
+            </div><!-- /.col-* -->
+
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary">Redefine Search Result</button>
+            </div><!-- /.col-* -->
+        </div><!-- /.row -->
+    </form>
+{% endblock %}

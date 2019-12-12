@@ -9,15 +9,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategorieDeServiceController extends AbstractController
 {
     /**
-     * @Route("/categorieDeService/{id}", name="categorie_de_service")
+     * @Route("/categorieDeService/", name="categorie_de_service")
      */
-    public function index(int $id = null, CategorieDeServicesRepository $categorieDeService)
+    public function index(CategorieDeServicesRepository $categorieDeService)
     {
-        if(!$id){
-            return $this->render('categorie_de_service/categorie_de_service.html.twig', [
-                'categorieDeServices'=>$categorieDeService->findAllCategorieDeServices()
-            ]);
-        }
+        return $this->render('categorie_de_service/categorie_de_service.html.twig', [
+            'categorieDeServices'=>$categorieDeService->findAllCategorieDeServices()
+        ]);
+    }
+
+    /**
+     * @Route("/categorieDeService/{id}", name="categorie_de_service_id")
+     */
+    public function indexId(int $id, CategorieDeServicesRepository $categorieDeService)
+    {
         return $this->render('categorie_de_service/categorie_de_service.html.twig', [
             'categorieDeServices'=>$categorieDeService->findOneCategorieDeService($id)
         ]);

@@ -1,11 +1,11 @@
 <div class="card-row">
     <div class="card-row-inner">
         <div class="card-row-image" style="background-image: url({{ categorieDeService.image.image }})">
-            <div class="card-row-label"><a href={{  path('categorie_de_service', {id: categorieDeService.id}) }}>{{ categorieDeService.nom }}</a></div><!-- /.card-row-label -->
+            <div class="card-row-label"><a href={{  path('categorie_de_service_id', {id: categorieDeService.id}) }}>{{ categorieDeService.nom }}</a></div><!-- /.card-row-label -->
             <div class="card-row-price">{{ categorieDeService.prestataires|length }} {{ categorieDeService.prestataires|length > 1 ? 'prestataires' : 'prestataire'}}</div><!-- -->
         </div><!-- /.card-row-image -->
         <div class="card-row-body">
-            <h2 class="card-row-title"><a href={{ path('categorie_de_service', {id: categorieDeService.id}) }}>{{ categorieDeService.nom }}</a></h2>
+            <h2 class="card-row-title"><a href={{ path('categorie_de_service_id', {id: categorieDeService.id}) }}>{{ categorieDeService.nom }}</a></h2>
             <div class="card-row-content"><p>{{ categorieDeService.description }}</p></div><!-- /.card-row-content -->
         </div><!-- /.card-row-body -->
     </div><!-- /.card-row-inner -->
