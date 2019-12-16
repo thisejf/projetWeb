@@ -72,25 +72,48 @@ class PrestataireRepository extends ServiceEntityRepository
 
     public function search(array $query){
 
-        return $this->createQueryBuilder('p')
-            ->select('p')
-            ->andWhere('p.nom LIKE :prestataire')
-            ->setParameter('prestataire', '%'.$query['prestataire'].'%')
-            ->leftJoin('p.categorieDeServices', 'categorie')
-            ->addSelect('categorie')
-            ->andWhere('categorie.nom LIKE :categorie')
-            ->setParameter('categorie', $query['categorie'])
-            ->leftJoin('p.codePostal','cp')
+        $qb =  $this->createQueryBuilder('p')
+                ->select('p');
+
+        if($query['prestataire'] !== ""){
+            $qb =  $qb->andWhere('p.nom LIKE :prestataire')
+                ->setParameter('prestataire', '%'.$query['prestataire'].'%');
+        }
+
+        $qb = $qb->leftJoin('p.categorieDeServices', 'categorie')
+            ->addSelect('categorie');
+
+        if($query['categorie'] !== ""){
+            $qb =  $qb->andWhere('categorie.nom LIKE :categorie')
+                ->setParameter('categorie', $query['categorie']);
+        }
+
+        $qb = $qb->leftJoin('p.codePostal','cp')
             ->addSelect('cp')
             ->leftJoin('p.localite','l')
             ->addSelect('l')
             ->leftJoin('p.commune','c')
-            ->addSelect('c')
-            ->leftJoin('p.image','i')
+            ->addSelect('c');
+
+        if($query['localite'] !==""){
+
+            if(is_numeric($query['localite'])){
+                $qb =  $qb->andWhere('cp.codePostal LIKE :localite')
+                    ->setParameter('localite', $query['localite']);
+            }else{
+                $qb =  $qb->andWhere('c.commune LIKE :localite OR l.localite LIKE :localite')
+                    ->setParameter('localite', '%'.$query['localite'].'%');
+            }
+
+        }
+
+        $qb = $qb->leftJoin('p.image','i')
             ->addSelect('i')
             ->orderBy('p.nom','ASC')
             ->getQuery()
             ->getResult();
+
+        return $qb;
     }
 
     // /**

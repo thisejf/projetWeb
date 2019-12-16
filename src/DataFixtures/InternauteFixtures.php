@@ -7,9 +7,17 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class InternauteFixtures extends Fixture implements DependentFixtureInterface
 {
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_BE');
@@ -25,6 +33,8 @@ class InternauteFixtures extends Fixture implements DependentFixtureInterface
             $internaute->setCommune($this->getReference(CommuneFixtures::COMMUNE_REFERENCE.$faker->numberBetween(0, CommuneFixtures::NBR_COMMUNE-1)));
             $internaute->setEMail($internaute->getNom()."@".$faker->freeEmailDomain);
             $internaute->setInscription($faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null));
+            $internaute->setPassword($this->passwordEncoder->encodePassword($internaute, 'password'.$i));
+            $internaute->setRoles(['ROLE_INTERNAUTE']);
             $manager->persist($internaute);
         }
         $manager->flush();

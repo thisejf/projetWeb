@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"internaute" = "Internaute", "prestataire" = "Prestataire"})
  */
-abstract class Utilisateur
+abstract class Utilisateur implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -52,7 +53,7 @@ abstract class Utilisateur
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $motDePasse;
+    protected $password;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -60,9 +61,11 @@ abstract class Utilisateur
     protected $nbEssaisInfructueux;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var array
+     *
+     * @ORM\Column(type="json")
      */
-    protected $typeUtilisateur;
+    private $roles = [];
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CodePostal")
@@ -156,14 +159,14 @@ abstract class Utilisateur
         return $this;
     }
 
-    public function getMotDePasse(): ?string
+    public function getPassword(): ?string
     {
-        return $this->motDePasse;
+        return $this->password;
     }
 
-    public function setMotDePasse(?string $motDePasse): self
+    public function setPassword(?string $password): self
     {
-        $this->motDePasse = $motDePasse;
+        $this->password = $password;
 
         return $this;
     }
@@ -180,16 +183,24 @@ abstract class Utilisateur
         return $this;
     }
 
-    public function getTypeUtilisateur(): ?string
+    /**
+     * Returns the roles or permissions granted to the user for security.
+     */
+    public function getRoles(): array
     {
-        return $this->typeUtilisateur;
+        $roles = $this->roles;
+
+        // guarantees that a user always has at least one role for security
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
     }
 
-    public function setTypeUtilisateur(?string $typeUtilisateur): self
+    public function setRoles(array $roles): void
     {
-        $this->typeUtilisateur = $typeUtilisateur;
-
-        return $this;
+        $this->roles = $roles;
     }
 
     public function getCodePostal(): ?CodePostal
@@ -226,5 +237,35 @@ abstract class Utilisateur
         $this->commune = $commune;
 
         return $this;
+    }
+
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * {@inheritdoc}
+     */
+    public function getSalt(): ?string
+    {
+        // See "Do you need to use a Salt?" at https://symfony.com/doc/current/cookbook/security/entity_provider.html
+        // we're using bcrypt in security.yml to encode the password, so
+        // the salt value is built-in and you don't have to generate one
+
+        return null;
+    }
+
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * {@inheritdoc}
+     */
+    public function eraseCredentials(): void
+    {
+        // if you had a plainPassword property, you'd nullify it here
+        // $this->plainPassword = null;
     }
 }

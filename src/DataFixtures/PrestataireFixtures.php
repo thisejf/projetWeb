@@ -8,9 +8,17 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class PrestataireFixtures extends Fixture implements DependentFixtureInterface
 {
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public const PRESTATAIRE_REFERENCE = 'prestataire';
 
     public function load(ObjectManager $manager)
@@ -32,7 +40,8 @@ class PrestataireFixtures extends Fixture implements DependentFixtureInterface
             $prestataire->setSiteInternet(strtolower("www.".str_replace(' ','',$prestataire->getNom()).".com"));
             $prestataire->addCategorieDeService($this->getReference(CategorieDeServicesFixtures::CATEGORIE_DE_SERVICE_REFERENCE.$faker->numberBetween(0,CategorieDeServicesFixtures::NBR_CATEGORIE_DE_SERVICE-1)));
             $prestataire->setInscription($faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null));
-
+            $prestataire->setPassword($this->passwordEncoder->encodePassword($prestataire, 'password'.$i));
+            $prestataire->setRoles(['ROLE_PRESTATAIRE']);
             $manager->persist($prestataire);
 
             //Sharing Objects between Fixtures

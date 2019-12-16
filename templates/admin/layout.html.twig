@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bien-Être - Admin Page{% endblock %}
+
+{% block header %}{{ include('admin/partials/_header.html.twig') }}{% endblock %}
+{% block body %}
+    <div class="main">
+        <div class="outer-admin">
+            <div class="wrapper-admin">
+                {{ include('admin/partials/_sidebar.html.twig') }}
+                {{ include('admin/partials/_sidebar_secondary.html.twig') }}
+                <div class="content-admin">
+                    <div class="content-admin-wrapper">
+                        {% block content %}{% endblock %}
+                        {% block contentFooter %}{% endblock %}
+                    </div><!-- /.content-admin-wrapper -->
+                </div><!-- /.content-admin -->
+            </div><!-- /.wrapper-admin -->
+        </div><!-- /.outer-admin -->
+    </div><!-- /.main -->
+{% endblock %}
+{% block footer %}{% endblock %}
