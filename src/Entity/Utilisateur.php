@@ -253,9 +253,9 @@ abstract class Utilisateur implements UserInterface
         return null;
     }
 
-    public function getUsername()
+    public function getUsername(): ?string
     {
-        // TODO: Implement getUsername() method.
+        return $this->eMail;
     }
 
     /**

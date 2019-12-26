@@ -1,14 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bien-Être - Admin Page{% endblock %}
+{% block title %}Bien-Être - Profil Page{% endblock %}
 
-{% block header %}{% endblock %}
 {% block body %}
     <div class="main">
         <div class="outer-admin">
             <div class="wrapper-admin">
-                {{ include('admin/partials/_sidebar.html.twig') }}
-                {{ include('admin/partials/_sidebar_secondary.html.twig') }}
                 <div class="content-admin">
                     <div class="content-admin-wrapper">
                         {% block content %}{% endblock %}

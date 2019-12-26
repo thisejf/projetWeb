@@ -1,0 +1,32 @@
+{% extends 'profil/layout.html.twig' %}
+{% block body %}
+    <div class="main">
+        <div class="main-inner mt80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-lg-3">
+                        <div class="sidebar">
+                            {{ include ('profil/partials/_user_photo.html.twig') }}
+                            {{ include('profil/partials/_edit_menu.html.twig') }}
+                        </div><!-- /.sidebar -->
+                    </div><!-- /.col-* -->
+
+                    <div class="col-sm-8 col-lg-9">
+                        <div class="content">
+                            <div class="page-title">
+                                <h1>Edit Profile</h1>
+                            </div><!-- /.page-title -->
+                            {% if app.user.roles[0] == 'ROLE_PRESTATAIRE'%}
+                                {{ include('profil/partials/_contact_prestataire_information.html.twig') }}
+                                {{ include('profil/partials/_address_information.html.twig') }}
+                                {{ include('profil/partials/_biography_information.html.twig') }}
+                            {% else %}
+                                {{ include('profil/partials/_contact_user_information.html.twig') }}
+                            {% endif %}
+                        </div><!-- /.content -->
+                    </div><!-- /.col-* -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.main-inner -->
+    </div><!-- /.main -->
+{% endblock %}

@@ -1,16 +1,10 @@
 <div class="header-top">
-    <div class="header-search">
-        <input type="text" class="form-control" placeholder="Search for...">
-    </div><!-- /.header-search -->
-
-    <ul class="header-nav-social social-links nav nav-pills">
-        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-    </ul><!-- /.header-nav-social -->
-
-    <ul class="header-nav-secondary nav nav-pills">
-        <li><a href={{ path('app_login') }}>Login</a></li>
-        <li><a href="register.html">Register</a></li>
-    </ul>
+    {% if user_type is defined %}
+        {{ include('partials/_header_nav_login.html.twig') }}
+    {% else %}
+        <ul class="header-nav-secondary nav nav-pills">
+            <li><a href={{ path('app_login') }}>Login</a></li>
+            <li><a href="register.html">Register</a></li>
+        </ul>
+    {% endif %}
 </div><!-- /.header-top -->

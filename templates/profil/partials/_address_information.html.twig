@@ -1,0 +1,33 @@
+<div class="background-white p20 mb30">
+    <h3 class="page-title">
+        Address
+        <a href="#" class="btn btn-primary btn-xs pull-right">Save</a>
+    </h3>
+
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <label>Rue</label>
+            <input type="text" class="form-control" value={{ app.user.adresseRue }}>
+        </div><!-- /.form-group -->
+
+        <div class="form-group col-sm-3">
+            <label>numéro</label>
+            <input type="text" class="form-control" value={{ app.user.adresseNumero }}>
+        </div><!-- /.form-group -->
+
+        <div class="form-group col-sm-3">
+            <label>Code Postal</label>
+            <input type="text" class="form-control" value={{ app.user.codePostal.codePostal }}>
+        </div><!-- /.form-group -->
+
+        <div class="form-group col-sm-6">
+            <label>Commune</label>
+            <input type="text" class="form-control" value={{ app.user.commune.commune }}>
+        </div><!-- /.form-group -->
+
+        <div class="form-group col-sm-6">
+            <label>Localité</label>
+            <input type="text" class="form-control" value={{ app.user.localite.localite }}>
+        </div><!-- /.form-group -->
+    </div><!-- /.row -->
+</div>
