@@ -9,8 +9,6 @@
 namespace App\Controller;
 
 use App\Entity\Prestataire;
-use App\Entity\Utilisateur;
-use App\Repository\InternauteRepository;
 use App\Repository\PrestataireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -27,7 +25,7 @@ class ProfilController extends AbstractController
         if($user instanceof Prestataire){
             $userType = 'prestataire';
         }else{
-            $userType = 'utilisateur';
+            $userType = 'internaute';
         }
         return $this->render('profil/profil.html.twig', [
             'user_type'=>$userType
