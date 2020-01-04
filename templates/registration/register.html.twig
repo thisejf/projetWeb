@@ -1,0 +1,15 @@
+{% extends 'registration/layout.html.twig' %}
+{% block title %}Bien-Être - Register{% endblock %}
+{% block container %}
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <div class="page-title">
+                    <h1>Register</h1>
+                </div><!-- /.page-title -->
+                {{ include('registration/_partials/_register_form.html.twig') }}
+            </div><!-- /.col-sm-4 -->
+        </div><!-- /.row -->
+
+    </div><!-- /.content -->
+{% endblock %}

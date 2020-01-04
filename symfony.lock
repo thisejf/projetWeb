@@ -41,9 +41,6 @@
             "src/Repository/.gitignore"
         ]
     },
-    "doctrine/doctrine-cache-bundle": {
-        "version": "1.3.5"
-    },
     "doctrine/doctrine-fixtures-bundle": {
         "version": "3.0",
         "recipe": {
@@ -105,11 +102,17 @@
             "config/packages/dev/easy_log_handler.yaml"
         ]
     },
+    "egulias/email-validator": {
+        "version": "2.1.13"
+    },
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "league/html-to-markdown": {
+        "version": "4.9.1"
     },
     "monolog/monolog": {
         "version": "1.25.1"
@@ -122,6 +125,9 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.3"
+    },
+    "php": {
+        "version": "7.3"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -184,6 +190,9 @@
     "symfony/dotenv": {
         "version": "v4.3.4"
     },
+    "symfony/error-handler": {
+        "version": "v4.4.2"
+    },
     "symfony/event-dispatcher": {
         "version": "v4.3.4"
     },
@@ -241,6 +250,18 @@
     },
     "symfony/intl": {
         "version": "v4.3.9"
+    },
+    "symfony/mailer": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "15658c2a0176cda2e7dba66276a2030b52bd81b2"
+        },
+        "files": [
+            "config/packages/mailer.yaml"
+        ]
     },
     "symfony/maker-bundle": {
         "version": "1.0",
@@ -363,6 +384,9 @@
             "templates/base.html.twig"
         ]
     },
+    "symfony/twig-pack": {
+        "version": "v1.0.0"
+    },
     "symfony/validator": {
         "version": "4.3",
         "recipe": {
@@ -416,6 +440,9 @@
     },
     "symfony/yaml": {
         "version": "v4.3.4"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.0.1"
     },
     "twig/twig": {
         "version": "v2.12.0"

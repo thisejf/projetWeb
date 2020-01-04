@@ -23,6 +23,7 @@ class PrestataireRepository extends ServiceEntityRepository
         $limit = 4;
         return $this->createQueryBuilder('p')
             ->select('p')
+            ->where('p.nom IS NOT NULL')
             ->leftJoin('p.localite','l')
             ->addSelect('l')
             ->leftJoin('p.commune','c')
