@@ -1,0 +1,46 @@
+{% extends 'emails/base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    {% apply inky_to_html|inline_css(source('@css/foundation-emails.css')) %}
+        <spacer size="16"></spacer>
+
+        <container>
+
+            <row class="header">
+                <columns>
+
+                    <spacer size="16"></spacer>
+
+                    <h4 class="text-center">Inscription à l'annuaire Bien-Etre</h4>
+                </columns>
+            </row>
+            <row>
+                <columns>
+
+                    <spacer size="32"></spacer>
+
+                    <center>
+                        <img src="http://placehold.it/250x250">
+                    </center>
+
+                    <spacer size="16"></spacer>
+
+                    <h1 class="text-center">Confirmez votre incription</h1>
+
+                    <spacer size="16"></spacer>
+
+                    <p class="text-center">Un simple click sur ce bouton et c'est parti!</p>
+                    <button class="large expand" href="#">Confirmation</button>
+
+                    <hr/>
+
+                    <p><small>Vous avez reçu cet email suite à votre inscription à l'annuaire Bien-Etre. Si vous souhaitez vous désincsrire <a href="#">Cliquez ici</a>.</small></p>
+                </columns>
+            </row>
+
+            <spacer size="16"></spacer>
+        </container>
+    {% endapply %}
+{% endblock %}

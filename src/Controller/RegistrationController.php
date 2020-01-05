@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
@@ -25,18 +25,17 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class);
         $data = $form->handleRequest($request);
 
+        $mail = $form->get('eMail')->getData();
+        $pW = $form->get('password')->getData();
+        $role = $form->get('roles')->getData();
 
-        if($data->get('roles')->getViewData()==='ROLE_INTERNAUTE'){
+        if($role ==='ROLE_INTERNAUTE'){
             $user = new Internaute();
         }else{
             $user = new Prestataire();
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $mail = $form->get('eMail')->getData();
-            $pW = $form->get('password')->getData();
-            $role = $form->get('roles')->getData();
 
             $user->setEMail($mail)
             ->setPassword($passwordEncoder->encodePassword($user, $pW))
@@ -48,12 +47,16 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // do anything else you need here, like send an email
-
-            $email = (new Email())
-                ->from('hello@example.com')
+            //
+            $email = (new TemplatedEmail())
+                ->from('info@annuaire.be')
                 ->to($mail)
                 ->subject('Time for Symfony Mailer!')
-                ->html('<p>See Twig integration for better HTML integration!</p>');
+                ->htmlTemplate('emails/signup.html.twig')
+                ->context([
+                    'expiration_date' => new \DateTime('+7 days'),
+                    'role' => $role
+                ]);
             /** @var Symfony\Component\Mailer\SentMessage $sentEmail */
             $mailer->send($email);
 
