@@ -14,3 +14,10 @@ import 'bootstrap-sass';
 import '../scss/superlist.scss';
 import '../css/app.css';
 
+
+
+$(function () {
+    $(window).on('load', function () {
+        $('#modal-confirmation').modal('show');
+    })
+});

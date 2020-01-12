@@ -5,12 +5,16 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\InternauteRepository")
+ * @UniqueEntity("eMail", entityClass="\App\Entity\Utilisateur")
  */
 class Internaute extends Utilisateur
 {
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -63,6 +67,7 @@ class Internaute extends Utilisateur
         $this->commentaire = new ArrayCollection();
         $this->abus = new ArrayCollection();
         $this->prestataires = new ArrayCollection();
+        parent::__construct();
     }
 
     public function getId(): ?int

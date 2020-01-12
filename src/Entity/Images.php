@@ -27,7 +27,7 @@ class Images
     private $ordre;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Prestataire", inversedBy="image")
+     * @ORM\OneToOne(targetEntity="App\Entity\Prestataire", inversedBy="image")
      */
     private $prestataire;
 
@@ -87,5 +87,10 @@ class Images
         $this->prestatairePhotos = $prestatairePhotos;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getImage();
     }
 }

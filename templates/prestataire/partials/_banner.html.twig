@@ -1,5 +1,5 @@
 <div class="mb80">
-    <div class="detail-banner" style="background-image: url({{ prestataire.image.first.image }})">
+    <div class="detail-banner" style="background-image: url({{ prestataire.image }})">
         <div class="container">
             <div class="detail-banner-left">
                 <div class="detail-banner-info">
@@ -14,7 +14,7 @@
 
                 <div class="detail-banner-address">
                     <i class="fa fa-map-o"></i> {{ prestataire.adresseRue }} {{ prestataire.adresseNumero }}<br>
-                    {{ prestataire.codePostal.codePostal }} {{ prestataire.commune.commune }}
+                    {{ prestataire.codePostal }} {{ prestataire.commune }}
                 </div><!-- /.detail-banner-address -->
 
                 <div class="detail-banner-rating">

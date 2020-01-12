@@ -5,9 +5,11 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PrestataireRepository")
+ * @UniqueEntity("eMail", entityClass="\App\Entity\Utilisateur")
  */
 class Prestataire extends Utilisateur
 {
@@ -64,7 +66,7 @@ class Prestataire extends Utilisateur
     private $commentaire;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="prestataire")
+     * @ORM\OneToOne(targetEntity="App\Entity\Images", mappedBy="prestataire")
      */
     private $image;
 
@@ -84,9 +86,9 @@ class Prestataire extends Utilisateur
         $this->promotion = new ArrayCollection();
         $this->stage = new ArrayCollection();
         $this->commentaire = new ArrayCollection();
-        $this->image = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->internaute = new ArrayCollection();
+        parent::__construct();
     }
 
     public function getId(): ?int
@@ -274,35 +276,20 @@ class Prestataire extends Utilisateur
     }
 
     /**
-     * @return Collection|Images[]
+     * @return Images
      */
-    public function getImage(): Collection
+    public function getImage(): ?Images
     {
         return $this->image;
     }
 
-    public function addImage(Images $image): self
+    public function setImage(Images $image): self
     {
-        if (!$this->image->contains($image)) {
-            $this->image[] = $image;
-            $image->setPrestataire($this);
-        }
-
+        $this->image = $image;
         return $this;
     }
 
-    public function removeImage(Images $image): self
-    {
-        if ($this->image->contains($image)) {
-            $this->image->removeElement($image);
-            // set the owning side to null (unless already changed)
-            if ($image->getPrestataire() === $this) {
-                $image->setPrestataire(null);
-            }
-        }
 
-        return $this;
-    }
 
     /**
      * @return Collection|Images[]

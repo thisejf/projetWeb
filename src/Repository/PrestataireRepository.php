@@ -117,6 +117,14 @@ class PrestataireRepository extends ServiceEntityRepository
         return $qb;
     }
 
+    public function findByToken($token){
+        return $this->createQueryBuilder('p')
+            ->where('p.register_token = :token')
+            ->setParameter('token',$token)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Prestataire[] Returns an array of Prestataire objects
     //  */

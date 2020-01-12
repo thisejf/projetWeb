@@ -26,13 +26,12 @@
                     </center>
 
                     <spacer size="16"></spacer>
-
                     <h1 class="text-center">Confirmez votre incription</h1>
-
+                    <span class="text-center">avant le {{ expiration_date|date("d/m/Y H:i:s") }}</span>
                     <spacer size="16"></spacer>
 
                     <p class="text-center">Un simple click sur ce bouton et c'est parti!</p>
-                    <button class="large expand" href="#">Confirmation</button>
+                    <button class="large expand" href="{{ absolute_url(path('register_confirmation',{token:user.registerToken})) }}">Confirmation</button>
 
                     <hr/>
 

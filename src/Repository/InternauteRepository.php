@@ -19,6 +19,22 @@ class InternauteRepository extends ServiceEntityRepository
         parent::__construct($registry, Internaute::class);
     }
 
+    public function findById($id){
+        return $this->createQueryBuilder('i')
+            ->where('i.id = :id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByToken($token){
+        return $this->createQueryBuilder('i')
+            ->where('i.register_token = :token')
+            ->setParameter('token',$token)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Internaute[] Returns an array of Internaute objects
     //  */

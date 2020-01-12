@@ -1,5 +1,5 @@
 <div class="col-sm-6">
-    <div class="card" style="background-image: url({{ prestataire.image.first.image }})">
+    <div class="card" style="background-image: url({{ prestataire.image }})">
         <div class="card-label">
             <a href="{{ prestataire.siteInternet }}">{{ prestataire.siteInternet  }}</a>
         </div><!-- /.card-label -->
@@ -9,7 +9,7 @@
 
             <div class="card-meta">
                 <i class="fa fa-map-o"></i> {{ prestataire.adresseRue }} {{ prestataire.adresseNumero }} <br>
-                {{ prestataire.codePostal.codePostal }} - {{ prestataire.commune.commune }}
+                {{ prestataire.codePostal }} - {{ prestataire.commune }}
             </div><!-- /.card-meta -->
 
             <div class="card-rating">

@@ -2,12 +2,14 @@
 
 namespace App\Form;
 
+use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -19,8 +21,8 @@ class RegistrationFormType extends AbstractType
             ->add( 'roles', ChoiceType::class,[
                 'attr' => ['class' => 'form-control'],
                 'choices' => [
-                    'Internaute'=> 'ROLE_INTERNAUTE',
-                    'Prestataire'=> 'ROLE_PRESTATAIRE',
+                    'Internaute'=> Utilisateur::ROLE_INTERNAUTE,
+                    'Prestataire'=> Utilisateur::ROLE_PRESTATAIRE,
                 ],
                 'mapped' => false,
             ])
@@ -41,7 +43,6 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'type' => PasswordType::class,
-                'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -66,4 +67,13 @@ class RegistrationFormType extends AbstractType
             ])
         ;
     }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Utilisateur::class,
+        ]);
+    }
+
+
 }

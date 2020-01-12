@@ -3,18 +3,25 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"internaute" = "Internaute", "prestataire" = "Prestataire"})
- * @UniqueEntity(fields={"eMail"}, message="There is already an account with this eMail")
+ * @ORM\DiscriminatorMap({"internaute" = "Internaute", "prestataire" = "Prestataire", "utilisateur" = "Utilisateur"})
  */
-abstract class Utilisateur implements UserInterface
+class Utilisateur implements UserInterface
 {
+    public const ROLE_PRESTATAIRE = "ROLE_PRESTATAIRE";
+    public const ROLE_INTERNAUTE = "ROLE_INTERNAUTE";
+
+    public function __construct()
+    {
+        $this->setInscription(new \DateTime());
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -38,7 +45,10 @@ abstract class Utilisateur implements UserInterface
     protected $banni;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     protected $eMail;
 
@@ -83,6 +93,11 @@ abstract class Utilisateur implements UserInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\Commune")
      */
     protected $commune;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $register_token;
 
     public function getId(): ?int
     {
@@ -200,9 +215,11 @@ abstract class Utilisateur implements UserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): void
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
     }
 
     public function getCodePostal(): ?CodePostal
@@ -241,6 +258,21 @@ abstract class Utilisateur implements UserInterface
         return $this;
     }
 
+    public function getRegisterToken()
+    {
+        return $this->register_token;
+    }
+
+    public function setRegisterToken(?string $register_token): self
+    {
+        $this->register_token = $register_token;
+
+        return $this;
+    }
+
+    public function getType(){
+        return $this instanceof Prestataire ? Utilisateur::ROLE_PRESTATAIRE : Utilisateur::ROLE_INTERNAUTE;
+    }
     /**
      * Returns the salt that was originally used to encode the password.
      *
