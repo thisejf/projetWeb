@@ -22,14 +22,13 @@
         "symfony/yaml": "4.3.*",
         "twig/cssinliner-extra": "^3.0",
         "twig/extra-bundle": "^3.0",
-        "twig/inky-extra": "^3.0",
-        "symfony/maker-bundle": "^1.13",
-        "doctrine/doctrine-fixtures-bundle": "^3.2",
-        "fzaninotto/faker": "^1.8",
-        "symfony/debug-pack": "^1.0"
+        "twig/inky-extra": "^3.0"
     },
     "require-dev": {
-
+        "doctrine/doctrine-fixtures-bundle": "^3.2",
+        "fzaninotto/faker": "^1.8",
+        "symfony/debug-pack": "^1.0",
+        "symfony/maker-bundle": "^1.13"
     },
     "config": {
         "preferred-install": {
