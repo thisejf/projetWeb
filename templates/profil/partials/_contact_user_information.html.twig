@@ -1,24 +1,42 @@
 <div class="background-white p20 mb30">
     <h3 class="page-title">
         Contact Information
-
-        <a href="#" class="btn btn-primary btn-xs pull-right">Save</a>
     </h3>
 
     <div class="row">
-        <div class="form-group col-sm-6">
-            <label>Name</label>
-            <input type="text" class="form-control" value={{ user.prenom }}>
-        </div><!-- /.form-group -->
+        {{ form_start(profilForm) }}
+            <div class="form-group col-sm-12">
+                {{ form_row(profilForm.eMail) }}
+            </div><!-- /.form-group -->
+            <div class="form-group col-sm-6">
+                {{ form_row(profilForm.nom) }}
+            </div><!-- /.form-group -->
+            <div class="form-group col-sm-6">
+                {{ form_row(profilForm.prenom) }}
+            </div><!-- /.form-group -->
+            <div class="form-group col-sm-8">
+                {{ form_row(profilForm.adresseRue) }}
+            </div><!-- /.form-group -->
+            <div class="form-group col-sm-4">
+                {{ form_row(profilForm.adresseNumero) }}
+            </div><!-- /.form-group -->
+            <div class="form-group col-sm-4">
+                {{ form_row(profilForm.codePostal) }}
+            </div><!-- /.form-group -->
+            <div class="form-group col-sm-4">
+                {{ form_row(profilForm.localite) }}
+            </div><!-- /.form-group -->
+            <div class="form-group col-sm-4">
+                {{ form_row(profilForm.commune) }}
+            </div><!-- /.form-group -->
+            <div class="form-group col-sm-12">
+                {{ form_row(profilForm.newsLetter) }}
+            </div><!-- /.form-group -->
 
-        <div class="form-group col-sm-6">
-            <label>Surname</label>
-            <input type="text" class="form-control" value={{ user.nom }}>
-        </div><!-- /.form-group -->
-
-        <div class="form-group col-sm-12">
-            <label>E-mail</label>
-            <input type="text" class="form-control" value={{ user.email }}>
-        </div><!-- /.form-group -->
+            <button type="submit" class="btn btn-primary pull-right">Save</button>
+        {{ form_end(profilForm) }}
     </div><!-- /.row -->
 </div>
+
+
+

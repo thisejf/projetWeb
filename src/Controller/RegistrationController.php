@@ -6,8 +6,6 @@ use App\Entity\Internaute;
 use App\Entity\Prestataire;
 use App\Entity\Utilisateur;
 use App\Form\RegistrationFormType;
-use App\Repository\InternauteRepository;
-use App\Repository\PrestataireRepository;
 use App\Security\LoginFormAuthenticator;
 use App\Service\MailGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -71,25 +69,25 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/register/confirmation/{token}", name="register_confirmation")
+     * @Route("/register/confirmation/{register_token}", name="register_confirmation")
+     *
      */
-    public function confirmation(string $token, Request $request, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, PrestataireRepository $prestataireRepository, InternauteRepository $internauteRepository)
+    public function confirmation(Utilisateur $utilisateur, Request $request, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator):Response
     {
-        if($prestataireRepository->findByToken($token) != null){
-            $user = $prestataireRepository->findByToken($token);
-        }elseif($internauteRepository->findByToken($token) != null){
-            $user = $internauteRepository->findByToken($token);
-        }else{
+        //todo : créer une exception custom
+        if($utilisateur == null){
             $this->redirectToRoute('app_register');
         }
-        $user = array_shift($user);
-        $user->setInscriptionConf(true);
+
+        //todo: vérifier si la date d'inscription n'est pas > j-7
+
+        $utilisateur->setInscriptionConf(true);
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
+        $entityManager->persist($utilisateur);
         $entityManager->flush();
 
         return $guardHandler->authenticateUserAndHandleSuccess(
-            $user,
+            $utilisateur,
             $request,
             $authenticator,
             'main' // firewall name in security.yaml

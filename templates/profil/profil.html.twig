@@ -32,7 +32,7 @@
                     <div class="col-sm-4 col-lg-3">
                         <div class="sidebar">
                             {{ include ('profil/partials/_user_photo.html.twig') }}
-                            {{ include('profil/partials/_edit_menu.html.twig') }}
+                            {% include 'profil/partials/_edit_menu.html.twig' with { 'user_type':user_type} %}
                         </div><!-- /.sidebar -->
                     </div><!-- /.col-* -->
 

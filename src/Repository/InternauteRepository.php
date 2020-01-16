@@ -27,14 +27,6 @@ class InternauteRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByToken($token){
-        return $this->createQueryBuilder('i')
-            ->where('i.register_token = :token')
-            ->setParameter('token',$token)
-            ->getQuery()
-            ->getResult();
-    }
-
     // /**
     //  * @return Internaute[] Returns an array of Internaute objects
     //  */
