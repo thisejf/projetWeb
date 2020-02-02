@@ -2,16 +2,17 @@
 
 namespace App\Form;
 
-use App\Entity\Internaute;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use App\Entity\CategorieDeServices;
+use App\Entity\Prestataire;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class InternauteFormType extends AbstractType
+class PrestataireFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -26,9 +27,9 @@ class InternauteFormType extends AbstractType
                 'label' => 'Nom',
                 'required'=>false
             ])
-            ->add('prenom', TextType::class,[
+            ->add('eMailContact',EmailType::class, [
                 'attr' => ['class' => 'form-control'],
-                'label' => 'Prénom',
+                'label' => 'Email public',
                 'required'=>false
             ])
             ->add('adresseRue', TextType::class,[
@@ -56,25 +57,43 @@ class InternauteFormType extends AbstractType
                 'label' => 'Commune',
                 'required'=>false
             ])
-            ->add('newsLetter', ChoiceType::class,[
+            ->add('numTel',TextType::class,[
+                'attr' => ['class' => 'form-control'],
+                'label' => 'numéro de téléphone',
+                'required'=>false
+            ])
+            ->add('numTVA',TextType::class,[
+                'attr' => ['class' => 'form-control'],
+                'label' => 'numéro de TVA',
+                'required'=>false
+            ])
+            ->add('siteInternet',TextType::class,[
+                'attr' => ['class' => 'form-control'],
+                'label' => 'Site Web',
+                'required'=>false
+            ])
+            ->add('categorieDeServices', EntityType::class, [
+                'class'=>CategorieDeServices::class,
+                'choice_label'=>'nom',
                 'attr' => ['class' => 'form-check'],
-                'label' => 'Newsletter',
+                'label' => 'Categorie de services',
                 'required'=>false,
                 'expanded'=>true,
                 'multiple'=>true,
-                'choices' => ['yes' => true],
-                'mapped'=>false
+                'mapped'=>true,
             ])
+
+            //todo ajouter de photos
             //->add('image')
-            //->add('position')
-            //>add('prestataires')
+            //todo modification et oubli mot de passe
+            //->add('password')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Internaute::class,
+            'data_class' => Prestataire::class,
         ]);
     }
 }

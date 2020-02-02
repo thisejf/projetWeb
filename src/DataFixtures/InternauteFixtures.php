@@ -35,6 +35,7 @@ class InternauteFixtures extends Fixture implements DependentFixtureInterface
             $internaute->setInscription($faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null));
             $internaute->setPassword($this->passwordEncoder->encodePassword($internaute, 'password'.$i));
             $internaute->setRoles(['ROLE_INTERNAUTE']);
+            $internaute->setInscriptionConf(true);
             $manager->persist($internaute);
         }
         $manager->flush();

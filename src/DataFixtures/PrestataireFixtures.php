@@ -41,6 +41,7 @@ class PrestataireFixtures extends Fixture implements DependentFixtureInterface
             $prestataire->setInscription($faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null));
             $prestataire->setPassword($this->passwordEncoder->encodePassword($prestataire, 'password'.$i));
             $prestataire->setRoles(['ROLE_PRESTATAIRE']);
+            $prestataire->setInscriptionConf(true);
             $manager->persist($prestataire);
 
             //Sharing Objects between Fixtures

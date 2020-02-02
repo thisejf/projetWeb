@@ -1,5 +1,5 @@
 <div class="header-top">
-    {% if user_type is defined %}
+    {% if app.user is not null %}
         {{ include('partials/_header_nav_login.html.twig') }}
     {% else %}
         <ul class="header-nav-secondary nav nav-pills">

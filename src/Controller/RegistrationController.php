@@ -79,18 +79,32 @@ class RegistrationController extends AbstractController
             $this->redirectToRoute('app_register');
         }
 
-        //todo: vérifier si la date d'inscription n'est pas > j-7
+        //vérifie si la date de confirmation n'est pas supérieur à 7 jours par rapport à l'inscription.
+        $interval = $utilisateur->getInscription()->diff(new \DateTime());
 
-        $utilisateur->setInscriptionConf(true);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($utilisateur);
-        $entityManager->flush();
+        if($interval->format('%d') <= 7 ){
+            $utilisateur->setInscriptionConf(true);
+            $utilisateur->setRegisterToken(null);
+            $this->addFlash('success', 'Votre profil a bien été confirmé!');
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($utilisateur);
+            $entityManager->flush();
 
-        return $guardHandler->authenticateUserAndHandleSuccess(
-            $utilisateur,
-            $request,
-            $authenticator,
-            'main' // firewall name in security.yaml
-        );
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $utilisateur,
+                $request,
+                $authenticator,
+                'main' // firewall name in security.yaml
+            );
+
+        }else{
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($utilisateur);
+            $entityManager->flush();
+            $this->addFlash('fail', "Votre profil n'a pas été confirmé à temps! Merci de vous réinscrire");
+            return $this->redirectToRoute('app_register');
+        }
+
+
     }
 }

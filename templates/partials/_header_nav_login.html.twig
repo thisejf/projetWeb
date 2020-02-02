@@ -2,13 +2,13 @@
     <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <div class="user-image">
-                    <img src={{ user.image }} alt="User Photo">
+                    <img src={{ app.user.image }} alt="User Photo">
                 <div class="notification"></div><!-- /.notification-->
             </div><!-- /.user-image -->
-            {% if user_type == 'prestataire'%}
-                <span class="header-nav-user-name">{{ user.nom }}</span>
+            {% if app.user.roles[0] == 'ROLE_PRESTATAIRE'%}
+                <span class="header-nav-user-name">{{ app.user.nom }}</span>
             {% else %}
-                <span class="header-nav-user-name">{{ user.prenom }} {{ user.nom }}</span>
+                <span class="header-nav-user-name">{{ app.user.prenom }} {{ app.user.nom }}</span>
             {% endif %}
             <i class="fa fa-chevron-down"></i>
         </button>

@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Entity\Prestataire;
 use App\Form\InternauteFormType;
+use App\Form\PrestataireFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +25,6 @@ class ProfilController extends AbstractController
         $user = $this->getUser();
         if($user instanceof Prestataire){
             $userType = 'prestataire';
-            ////todo formulaire prestataire
             $form = $this->createForm(PrestataireFormType::class, $user);
         }else{
             $userType = 'internaute';
@@ -34,10 +34,11 @@ class ProfilController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
-            $newsletter = $form['newsLetter']->getData();
-            $newsletter = array_shift($newsletter);
-            $user->setNewsLetter($newsletter);
-
+            if($userType === 'internaute'){
+                $newsletter = $form['newsLetter']->getData();
+                $newsletter = array_shift($newsletter);
+                $user->setNewsLetter($newsletter);
+            }
             //$user->setPassword($passwordEncoder->encodePassword($user ,$user->getpassword()))
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -45,10 +46,8 @@ class ProfilController extends AbstractController
         }
 
         return $this->render('profil/profil.html.twig', [
-            'user_type'=>$userType,
             'user'=>$user,
             'profilForm' => $form->createView(),
         ]);
     }
-
 }

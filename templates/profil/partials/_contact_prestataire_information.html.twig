@@ -1,38 +1,50 @@
 <div class="background-white p20 mb30">
     <h3 class="page-title">
         Contact Information
-        <a href="#" class="btn btn-primary btn-xs pull-right">Save</a>
     </h3>
 
     <div class="row">
-        <div class="form-group col-sm-6">
-            <label>Nom</label>
-            <input type="text" class="form-control" value={{ user.nom }}>
+        {{ form_start(profilForm) }}
+        <div class="form-group col-sm-12">
+            {{ form_row(profilForm.eMail) }}
         </div><!-- /.form-group -->
-
         <div class="form-group col-sm-6">
-            <label>website</label>
-            <input type="text" class="form-control" value={{ user.siteInternet }}>
+            {{ form_row(profilForm.nom) }}
         </div><!-- /.form-group -->
-
         <div class="form-group col-sm-6">
-            <label>E-mail</label>
-            <input type="text" class="form-control" value={{ user.eMailContact }}>
+            {{ form_row(profilForm.eMailContact) }}
         </div><!-- /.form-group -->
-
+        <div class="form-group col-sm-8">
+            {{ form_row(profilForm.adresseRue) }}
+        </div><!-- /.form-group -->
+        <div class="form-group col-sm-4">
+            {{ form_row(profilForm.adresseNumero) }}
+        </div><!-- /.form-group -->
+        <div class="form-group col-sm-4">
+            {{ form_row(profilForm.codePostal) }}
+        </div><!-- /.form-group -->
+        <div class="form-group col-sm-4">
+            {{ form_row(profilForm.localite) }}
+        </div><!-- /.form-group -->
+        <div class="form-group col-sm-4">
+            {{ form_row(profilForm.commune) }}
+        </div><!-- /.form-group -->
         <div class="form-group col-sm-6">
-            <label>Tél</label>
-            <input type="text" class="form-control" value={{ user.numTel }}>
+            {{ form_row(profilForm.numTel) }}
         </div><!-- /.form-group -->
-
         <div class="form-group col-sm-6">
-            <label>Personne de contact (email)</label>
-            <input type="text" class="form-control" value={{ user.eMail }}>
+            {{ form_row(profilForm.numTVA) }}
         </div><!-- /.form-group -->
-
-        <div class="form-group col-sm-6">
-            <label>TVA</label>
-            <input type="text" class="form-control" value={{ user.numTVA }}>
+        <div class="form-group col-sm-12">
+            {{ form_row(profilForm.siteInternet) }}
         </div><!-- /.form-group -->
+        <div class="form-group col-sm-12">
+            {{ form_row(profilForm.categorieDeServices) }}
+        </div><!-- /.form-group -->
+        <button type="submit" class="btn btn-primary pull-right">Save</button>
+        {{ form_end(profilForm) }}
     </div><!-- /.row -->
 </div>
+
+
+
