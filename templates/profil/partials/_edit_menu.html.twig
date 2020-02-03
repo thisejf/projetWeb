@@ -1,7 +1,8 @@
 <div class="widget">
     <ul class="menu-advanced">
         {% if app.user.roles[0] == 'ROLE_PRESTATAIRE'%}
-            <li><a href="listing-submit.html"><i class="fa fa-pencil"></i>Promotions et stages</a></li>
+            <li><a href="#"><i class="fa fa-pencil"></i>Promotions et stages</a></li>
+            <li><a href={{ path('gestion_des_images') }}><i class="fa fa-image"></i>Gestion des images</a></li>
         {% endif %}
         <li><a href="#"><i class="fa fa-user"></i> Edit Profile</a></li>
         <li><a href="#"><i class="fa fa-key"></i> Password</a></li>

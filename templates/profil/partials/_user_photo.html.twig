@@ -1,6 +1,6 @@
 <div class="widget">
     <div class="user-photo">
-        <a href="{{ app.user.image ? asset('uploads/images/' ~ app.user.image) : '#' }}">
+        <a href="{{ app.user.image ? asset('uploads/images/' ~ app.user.image) : '#' }}" target="_blank">
             <img src="{{ asset('uploads/images/' ~ app.user.image) }}" alt="User Photo" />
         </a>
     </div><!-- /.user-photo -->

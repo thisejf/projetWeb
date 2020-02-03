@@ -1,0 +1,26 @@
+<div class="background-white p20 mb30">
+    <h3 class="page-title">Gestion des images</h3>
+    <div class="row">
+        {% if gallery > 0 %}
+            {% for image in gallery %}
+                <div class="col-sm-3">
+                    <a href="{{ image ? asset('uploads/images/' ~ image.image) : '#' }}" target="_blank">
+                        <img src="{{ asset('uploads/images/' ~ image.image) }}" alt="gallery" class="img-responsive"/>
+                    </a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <hr>
+    <div class="row">
+        {{ form_start(imagesForm) }}
+        <div class="form-group col-sm-12">
+            {{ form_row(imagesForm.image) }}
+        </div><!-- /.form-group -->
+        <button type="submit" class="btn btn-primary pull-right">Save</button>
+        {{ form_end(imagesForm) }}
+    </div><!-- /.row -->
+</div>
+
+
+

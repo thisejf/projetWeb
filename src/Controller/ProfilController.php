@@ -12,6 +12,8 @@ use App\Entity\Images;
 use App\Entity\Prestataire;
 use App\Form\InternauteFormType;
 use App\Form\PrestataireFormType;
+use App\Form\ImageFormType;
+use App\Repository\ImagesRepository;
 use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -58,6 +60,38 @@ class ProfilController extends AbstractController
         return $this->render('profil/profil.html.twig', [
             'user'=>$user,
             'profilForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/profil/images", name="gestion_des_images")
+     */
+    public function gestionDesImages(Request $request, FileUploader $fileUploader, ImagesRepository $imagesRepository)
+    {
+        $user = $this->getUser();
+        $image = new Images();
+
+        $form = $this->createForm(ImageFormType::class, $image);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->getData();
+            $imageFile = $form['image']->getData();
+            if ($imageFile) {
+                $imageFileName = $fileUploader->upload($imageFile);
+                $image->setImage($imageFileName);
+                $image->setPrestatairePhotos($user);
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($image);
+            $entityManager->flush();
+        }
+        $gallery = $imagesRepository->findPrestataireImages($user->getId());
+        return $this->render('profil/images.html.twig', [
+            'user'=>$user,
+            'gallery'=>$gallery,
+            'imagesForm' => $form->createView(),
         ]);
     }
 }

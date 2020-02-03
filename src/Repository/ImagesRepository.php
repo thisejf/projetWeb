@@ -27,6 +27,17 @@ class ImagesRepository extends ServiceEntityRepository
                 ;
     }
 
+    public function findPrestataireImages($id){
+        return$this->createQueryBuilder('i')
+            ->andWhere('i.prestatairePhotos = :id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+
     // /**
     //  * @return Images[] Returns an array of Images objects
     //  */

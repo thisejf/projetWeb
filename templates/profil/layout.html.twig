@@ -1,19 +1,55 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{% endblock %}
-
 {% block body %}
+    {% if user.inscriptionConf == false %}
+        <!-- Modal -->
+        <div class="modal fade" id="modal-confirmation" tabindex="-1" role="dialog" aria-labelledby="modalConfirmationLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalConfirmationLabel">Confirmation de votre compte</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">Merci pour votre inscription</div>
+                        <div class="text-center">Un email de confirmation vous a été adressé à</div>
+                        <div class="text-center">{{ user.eMail }}</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
     <div class="main">
-        <div class="outer-admin">
-            <div class="wrapper-admin">
-                <div class="content-admin">
-                    <div class="content-admin-wrapper">
-                        {% block content %}{% endblock %}
-                        {% block contentFooter %}{% endblock %}
-                    </div><!-- /.content-admin-wrapper -->
-                </div><!-- /.content-admin -->
-            </div><!-- /.wrapper-admin -->
-        </div><!-- /.outer-admin -->
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="main-inner mt80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-lg-3">
+                        <div class="sidebar">
+                            {{ include ('profil/partials/_user_photo.html.twig') }}
+                            {{ include ('profil/partials/_edit_menu.html.twig') }}
+                        </div><!-- /.sidebar -->
+                    </div><!-- /.col-* -->
+
+                    <div class="col-sm-8 col-lg-9">
+                        <div class="content">
+                            {% block content %}{% endblock %}
+                        </div><!-- /.content -->
+                    </div><!-- /.col-* -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.main-inner -->
     </div><!-- /.main -->
 {% endblock %}
 {% block footer %}{% endblock %}

@@ -100,6 +100,7 @@ class PrestataireFormType extends AbstractType
                     ])
                 ],
             ])
+            //todo liste de catégories de services
             //todo modification et oubli mot de passe
             //->add('password')
         ;
