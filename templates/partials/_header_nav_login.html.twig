@@ -2,7 +2,7 @@
     <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <div class="user-image">
-                    <img src={{ app.user.image }} alt="User Photo">
+                    <img src={{ asset('uploads/images/' ~ app.user.image) }} alt="User Photo">
                 <div class="notification"></div><!-- /.notification-->
             </div><!-- /.user-image -->
             {% if app.user.roles[0] == 'ROLE_PRESTATAIRE'%}

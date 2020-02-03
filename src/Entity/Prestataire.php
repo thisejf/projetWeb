@@ -66,7 +66,7 @@ class Prestataire extends Utilisateur
     private $commentaire;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Images", mappedBy="prestataire")
+     * @ORM\OneToOne(targetEntity="App\Entity\Images", cascade={"persist", "remove"})
      */
     private $image;
 
@@ -275,21 +275,16 @@ class Prestataire extends Utilisateur
         return $this;
     }
 
-    /**
-     * @return Images
-     */
     public function getImage(): ?Images
     {
         return $this->image;
     }
 
-    public function setImage(Images $image): self
+    public function setImage(?Images $image): self
     {
         $this->image = $image;
         return $this;
     }
-
-
 
     /**
      * @return Collection|Images[]

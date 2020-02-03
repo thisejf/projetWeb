@@ -27,11 +27,6 @@ class Images
     private $ordre;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Prestataire", inversedBy="image")
-     */
-    private $prestataire;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Prestataire", inversedBy="images")
      */
     private $prestatairePhotos;
@@ -61,18 +56,6 @@ class Images
     public function setOrdre(?int $ordre): self
     {
         $this->ordre = $ordre;
-
-        return $this;
-    }
-
-    public function getPrestataire(): ?Prestataire
-    {
-        return $this->prestataire;
-    }
-
-    public function setPrestataire(?Prestataire $prestataire): self
-    {
-        $this->prestataire = $prestataire;
 
         return $this;
     }

@@ -6,6 +6,8 @@ use App\Entity\CategorieDeServices;
 use App\Entity\Prestataire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -82,9 +84,22 @@ class PrestataireFormType extends AbstractType
                 'multiple'=>true,
                 'mapped'=>true,
             ])
-
-            //todo ajouter de photos
-            //->add('image')
+            ->add('image', FileType::class, [
+                'label' => 'Image de profil',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2048k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/gif',
+                            'image/png'
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image',
+                    ])
+                ],
+            ])
             //todo modification et oubli mot de passe
             //->add('password')
         ;

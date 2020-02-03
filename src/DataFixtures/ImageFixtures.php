@@ -15,14 +15,6 @@ class ImageFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         for ($i = 0; $i < self::NBR_IMAGE_PRESTATAIRE; $i++){
-            $images = new Images();
-            $images->setImage('https://loremflickr.com/320/240/dog?random='.$i);
-            $images->setPrestataire($this->getReference(PrestataireFixtures::PRESTATAIRE_REFERENCE.$i));
-            $manager->persist($images);
-        }
-        $manager->flush();
-
-        for ($i = 0; $i < self::NBR_IMAGE_PRESTATAIRE; $i++){
             for($j = 0; $j <self::NBR_PRESTATAIRE_PHOTO; $j++){
                 $images = new Images();
                 $images->setImage('http://placeimg.com/640/480/people/'.$i.$j);

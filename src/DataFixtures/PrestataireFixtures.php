@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Images;
 use App\Entity\Prestataire;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -19,6 +20,7 @@ class PrestataireFixtures extends Fixture implements DependentFixtureInterface
     }
 
     public const PRESTATAIRE_REFERENCE = 'prestataire';
+    public const IMAGE_PROFIL_REFERENCE = 'image_profil';
 
     public function load(ObjectManager $manager)
     {
@@ -32,7 +34,7 @@ class PrestataireFixtures extends Fixture implements DependentFixtureInterface
             $prestataire->setLocalite($this->getReference(LocaliteFixtures::LOCALITE_REFERENCE.$faker->numberBetween(0, localiteFixtures::NBR_LOCALITE-1)));
             $prestataire->setCodePostal($this->getReference(CodePostalFixtures::CODE_POSTAL_REFERENCE.$faker->numberBetween(0, codePostalFixtures::NBR_CODE_POSTAL-1)));
             $prestataire->setCommune($this->getReference(CommuneFixtures::COMMUNE_REFERENCE.$faker->numberBetween(0, CommuneFixtures::NBR_COMMUNE-1)));
-            $prestataire->setEMail(strtolower($faker->firstname."@".str_replace(' ','',$prestataire->getNom()).".com"));
+            $prestataire->setEMail(strtolower('superman'."@".str_replace(' ','',$prestataire->getNom()).".com"));
             $prestataire->setEMailContact("info@".str_replace(' ','',$prestataire->getNom()).".com");
             $prestataire->setNumTel($faker->phoneNumber);
             $prestataire->setNumTVA($faker->vat(false));
@@ -42,6 +44,14 @@ class PrestataireFixtures extends Fixture implements DependentFixtureInterface
             $prestataire->setPassword($this->passwordEncoder->encodePassword($prestataire, 'password'.$i));
             $prestataire->setRoles(['ROLE_PRESTATAIRE']);
             $prestataire->setInscriptionConf(true);
+            //image de profil
+            $images = new Images();
+            $images->setImage('https://loremflickr.com/320/240/dog?random='.$i);
+            $manager->persist($images);
+            //Sharing Objects between Fixtures
+            $this->addReference(self::IMAGE_PROFIL_REFERENCE.$i, $images);
+            $prestataire->setImage($this->getReference(PrestataireFixtures::IMAGE_PROFIL_REFERENCE.$i));
+
             $manager->persist($prestataire);
 
             //Sharing Objects between Fixtures
