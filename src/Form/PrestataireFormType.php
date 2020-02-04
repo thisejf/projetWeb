@@ -92,7 +92,7 @@ class PrestataireFormType extends AbstractType
                 'label' => 'Site Web',
                 'required'=>false
             ])
-            ->add('categorieDeServices', EntityType::class, [
+            ->add('categorieDeServices', EntityType::class,[
                 'class'=>CategorieDeServices::class,
                 'choice_label'=>'nom',
                 'attr' => ['class' => 'form-check'],
@@ -100,9 +100,9 @@ class PrestataireFormType extends AbstractType
                 'required'=>false,
                 'expanded'=>true,
                 'multiple'=>true,
-                'mapped'=>true,
+                'mapped'=>true
             ])
-            ->add('image', FileType::class, [
+            ->add('image', FileType::class,[
                 'label' => 'Image de profil',
                 'mapped' => false,
                 'required' => false,
@@ -118,7 +118,6 @@ class PrestataireFormType extends AbstractType
                     ])
                 ],
             ])
-            //todo ajout liste de catégories de services
         ;
     }
 
