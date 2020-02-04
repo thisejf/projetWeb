@@ -10,14 +10,18 @@ namespace App\Controller;
 
 use App\Entity\Images;
 use App\Entity\Prestataire;
+use App\Form\ChangePasswordFormType;
 use App\Form\InternauteFormType;
 use App\Form\PrestataireFormType;
 use App\Form\ImageFormType;
+use App\Form\Type\ChangePasswordType;
 use App\Repository\ImagesRepository;
 use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ProfilController extends AbstractController
 {
@@ -50,8 +54,6 @@ class ProfilController extends AbstractController
                 $image->setImage($imageFileName);
                 $user->setImage($image);
             }
-
-            //$user->setPassword($passwordEncoder->encodePassword($user ,$user->getpassword()))
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -68,6 +70,7 @@ class ProfilController extends AbstractController
      */
     public function gestionDesImages(Request $request, FileUploader $fileUploader, ImagesRepository $imagesRepository)
     {
+        $this->denyAccessUnlessGranted('ROLE_PRESTATAIRE');
         $user = $this->getUser();
         $image = new Images();
 
@@ -92,6 +95,32 @@ class ProfilController extends AbstractController
             'user'=>$user,
             'gallery'=>$gallery,
             'imagesForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/profil/change_password", name="change_password")
+     */
+    public function changePassword(Request $request, UserPasswordEncoderInterface $encoder): Response
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm(ChangePasswordFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword($encoder->encodePassword($user, $form->get('newPassword')->getData()));
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_logout');
+        }
+
+        return $this->render('profil/change_password.html.twig', [
+            'changePasswordForm' => $form->createView(),
+            'user'=>$user
         ]);
     }
 }

@@ -2,7 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\CodePostal;
+use App\Entity\Commune;
 use App\Entity\Internaute;
+use App\Entity\Localite;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -43,19 +47,34 @@ class InternauteFormType extends AbstractType
                 'label' => 'Numéro de Rue',
                 'required'=>false
             ])
-            ->add('codePostal', NumberType::class,[
+            ->add('codePostal', EntityType::class,[
+                'class'=>CodePostal::class,
+                'choice_label'=>'codePostal',
                 'attr' => ['class' => 'form-control'],
                 'label' => 'Code postal',
+                'expanded'=>false,
+                'multiple'=>false,
+                'mapped'=>true,
                 'required'=>false
             ])
-            ->add('localite', TextType::class,[
+            ->add('localite', EntityType::class,[
+                'class'=>Localite::class,
+                'choice_label'=>'localite',
                 'attr' => ['class' => 'form-control'],
                 'label' => 'Localité',
+                'expanded'=>false,
+                'multiple'=>false,
+                'mapped'=>true,
                 'required'=>false
             ])
-            ->add('commune', TextType::class,[
+            ->add('commune', EntityType::class,[
+                'class'=>Commune::class,
+                'choice_label'=>'commune',
                 'attr' => ['class' => 'form-control'],
                 'label' => 'Commune',
+                'expanded'=>false,
+                'multiple'=>false,
+                'mapped'=>true,
                 'required'=>false
             ])
             ->add('newsLetter', ChoiceType::class,[
@@ -83,8 +102,6 @@ class InternauteFormType extends AbstractType
                     ])
                 ],
             ])
-            //->add('position')
-            //>add('prestataires')
         ;
     }
 

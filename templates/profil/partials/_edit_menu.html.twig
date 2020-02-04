@@ -4,8 +4,8 @@
             <li><a href="#"><i class="fa fa-pencil"></i>Promotions et stages</a></li>
             <li><a href={{ path('gestion_des_images') }}><i class="fa fa-image"></i>Gestion des images</a></li>
         {% endif %}
-        <li><a href="#"><i class="fa fa-user"></i> Edit Profile</a></li>
-        <li><a href="#"><i class="fa fa-key"></i> Password</a></li>
+        <li><a href={{ path('profil') }}><i class="fa fa-user"></i> Edit Profile</a></li>
+        <li><a href={{ path('change_password') }}><i class="fa fa-key"></i>Password</a></li>
         <li><a href={{ path('app_logout') }}><i class="fa fa-sign-out"></i> Logout</a></li>
     </ul>
 </div><!-- /.widget -->

@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\CategorieDeServices;
+use App\Entity\CodePostal;
+use App\Entity\Commune;
+use App\Entity\Localite;
 use App\Entity\Prestataire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -44,19 +47,34 @@ class PrestataireFormType extends AbstractType
                 'label' => 'Numéro de Rue',
                 'required'=>false
             ])
-            ->add('codePostal', NumberType::class,[
+            ->add('codePostal', EntityType::class,[
+                'class'=>CodePostal::class,
+                'choice_label'=>'codePostal',
                 'attr' => ['class' => 'form-control'],
                 'label' => 'Code postal',
+                'expanded'=>false,
+                'multiple'=>false,
+                'mapped'=>true,
                 'required'=>false
             ])
-            ->add('localite', TextType::class,[
+            ->add('localite', EntityType::class,[
+                'class'=>Localite::class,
+                'choice_label'=>'localite',
                 'attr' => ['class' => 'form-control'],
                 'label' => 'Localité',
+                'expanded'=>false,
+                'multiple'=>false,
+                'mapped'=>true,
                 'required'=>false
             ])
-            ->add('commune', TextType::class,[
+            ->add('commune', EntityType::class,[
+                'class'=>Commune::class,
+                'choice_label'=>'commune',
                 'attr' => ['class' => 'form-control'],
                 'label' => 'Commune',
+                'expanded'=>false,
+                'multiple'=>false,
+                'mapped'=>true,
                 'required'=>false
             ])
             ->add('numTel',TextType::class,[
@@ -100,9 +118,7 @@ class PrestataireFormType extends AbstractType
                     ])
                 ],
             ])
-            //todo liste de catégories de services
-            //todo modification et oubli mot de passe
-            //->add('password')
+            //todo ajout liste de catégories de services
         ;
     }
 
